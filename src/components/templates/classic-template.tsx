@@ -9,10 +9,10 @@ export function ClassicTemplate({ resume }: { resume: ResumeSchema }) {
   const { personalInfo, summary, experience, education, projects, skills } = resume;
 
   return (
-    <div className="flex flex-col h-full p-8 bg-white text-gray-800 font-serif">
+    <div className="flex flex-col h-full p-8 bg-white text-gray-800 font-[Georgia,serif]">
         <header className="text-center mb-6">
           {personalInfo.photoUrl && (
-              <div className="relative w-24 h-24 mx-auto mb-4">
+              <div className="relative w-32 h-32 mx-auto mb-4 border-4 border-gray-200 rounded-full">
                   <Image
                       src={personalInfo.photoUrl}
                       alt={personalInfo.name}
@@ -22,18 +22,18 @@ export function ClassicTemplate({ resume }: { resume: ResumeSchema }) {
                   />
               </div>
           )}
-          <h1 className="text-4xl font-bold tracking-wider">{personalInfo.name}</h1>
-          <div className="flex items-center justify-center gap-x-6 text-gray-600 mt-2 text-xs">
+          <h1 className="text-5xl font-bold tracking-wider">{personalInfo.name}</h1>
+          <div className="flex items-center justify-center gap-x-6 text-gray-600 mt-3 text-sm">
             <a href={`mailto:${personalInfo.email}`} className="flex items-center gap-1.5 hover:text-primary">
-              <Mail className="w-3 h-3" />
+              <Mail className="w-4 h-4" />
               <span>{personalInfo.email}</span>
             </a>
             <div className="flex items-center gap-1.5">
-               <Phone className="w-3 h-3" />
+               <Phone className="w-4 h-4" />
               <span>{personalInfo.phone}</span>
             </div>
             <div className="flex items-center gap-1.5">
-               <MapPin className="w-3 h-3" />
+               <MapPin className="w-4 h-4" />
               <span>{personalInfo.address}</span>
             </div>
           </div>
@@ -42,21 +42,24 @@ export function ClassicTemplate({ resume }: { resume: ResumeSchema }) {
         <Separator className="mb-6 bg-gray-300" />
 
         <section className="mb-6">
-          <h2 className="text-xl font-bold tracking-widest text-gray-700 border-b-2 border-gray-300 pb-1 mb-3">Summary</h2>
-          <p className="text-sm leading-relaxed">{summary.content}</p>
+          <h2 className="text-xl font-bold tracking-[.2em] text-center text-gray-700 uppercase pb-1 mb-4">Summary</h2>
+          <p className="text-sm text-center leading-relaxed">{summary.content}</p>
         </section>
 
         <section className="mb-6">
-          <h2 className="text-xl font-bold tracking-widest text-gray-700 border-b-2 border-gray-300 pb-1 mb-3">Experience</h2>
-          <div className="space-y-4">
+          <h2 className="text-xl font-bold tracking-[.2em] text-center text-gray-700 uppercase pb-1 mb-4">Experience</h2>
+          <div className="space-y-5">
             {experience.map((exp) => (
               <div key={exp.id}>
                 <div className="flex justify-between items-baseline">
-                  <h3 className="text-lg font-semibold">{exp.jobTitle}, <span className="text-md font-normal italic text-gray-600">{exp.company}</span></h3>
+                  <h3 className="text-lg font-semibold">{exp.jobTitle}</h3>
                   <span className="text-sm text-gray-600 font-mono">{exp.startDate} - {exp.endDate}</span>
                 </div>
-                <p className="text-sm text-gray-500 mb-1">{exp.location}</p>
-                <ul className="mt-1 list-disc list-inside text-sm space-y-1 text-gray-700">
+                 <div className="flex justify-between items-baseline">
+                    <span className="text-md font-normal italic text-gray-600">{exp.company}</span>
+                    <p className="text-sm text-gray-500 mb-1">{exp.location}</p>
+                 </div>
+                <ul className="mt-2 list-disc list-inside text-sm space-y-1 text-gray-700">
                   {exp.description.split('\n').map((line, i) => line.trim() && <li key={i}>{line.replace(/^- /, '')}</li>)}
                 </ul>
               </div>
@@ -65,7 +68,7 @@ export function ClassicTemplate({ resume }: { resume: ResumeSchema }) {
         </section>
 
         <section className="mb-6">
-          <h2 className="text-xl font-bold tracking-widest text-gray-700 border-b-2 border-gray-300 pb-1 mb-3">Education</h2>
+          <h2 className="text-xl font-bold tracking-[.2em] text-center text-gray-700 uppercase pb-1 mb-4">Education</h2>
           <div className="space-y-3">
             {education.map((edu) => (
               <div key={edu.id} className="flex justify-between items-start">
@@ -80,20 +83,20 @@ export function ClassicTemplate({ resume }: { resume: ResumeSchema }) {
         </section>
 
         <section className="mb-6">
-          <h2 className="text-xl font-bold tracking-widest text-gray-700 border-b-2 border-gray-300 pb-1 mb-3">Projects</h2>
-          <div className="space-y-3">
+          <h2 className="text-xl font-bold tracking-[.2em] text-center text-gray-700 uppercase pb-1 mb-4">Projects</h2>
+          <div className="space-y-4">
             {projects.map((proj) => (
               <div key={proj.id}>
                 <h3 className="text-lg font-semibold">{proj.name}</h3>
-                <p className="text-sm">{proj.description}</p>
+                <p className="text-sm text-gray-700">{proj.description}</p>
               </div>
             ))}
           </div>
         </section>
 
         <section>
-          <h2 className="text-xl font-bold tracking-widest text-gray-700 border-b-2 border-gray-300 pb-1 mb-3">Skills</h2>
-          <p className="text-sm">{skills.content}</p>
+          <h2 className="text-xl font-bold tracking-[.2em] text-center text-gray-700 uppercase pb-1 mb-4">Skills</h2>
+          <p className="text-sm text-center">{skills.content}</p>
         </section>
     </div>
   )

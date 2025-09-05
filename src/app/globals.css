@@ -72,23 +72,20 @@
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
-  body * {
-    visibility: hidden;
+  .no-print {
+    display: none;
   }
-  #resume-preview, #resume-preview * {
+  #resume-container, #resume-container * {
     visibility: visible;
   }
-  #resume-preview {
+  #resume-container {
     position: absolute;
     left: 0;
     top: 0;
     width: 100%;
-    height: auto;
-    transform: scale(0.9);
+    height: 100%;
+    transform: scale(1);
     transform-origin: top left;
-  }
-  .no-print {
-    display: none;
   }
 }
 

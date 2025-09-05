@@ -23,8 +23,10 @@ export default function ResumePreview({ isThumbnail = false }) {
   }
 
   return (
-    <Card className={`w-full max-w-[8.5in] aspect-[8.5/11] mx-auto shadow-2xl text-sm ${isThumbnail ? '' : 'p-8 sm:p-12'}`}>
-      {renderTemplate()}
-    </Card>
+    <div id="resume-preview">
+      <Card className={`w-full max-w-[8.5in] aspect-[8.5/11] mx-auto shadow-lg print:shadow-none`}>
+        {renderTemplate()}
+      </Card>
+    </div>
   );
 }

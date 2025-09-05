@@ -9,56 +9,54 @@ export function DefaultTemplate({ resume }: { resume: ResumeSchema }) {
   const { personalInfo, summary, experience, education, projects, skills } = resume;
 
   return (
-    <div className="flex flex-col h-full p-8 sm:p-12 bg-white text-gray-800 font-sans">
+    <div className="flex flex-col h-full p-8 bg-white text-gray-800 font-sans">
         {/* Header */}
-        <header className="flex items-center gap-8">
+        <header className="flex items-center gap-8 mb-8">
           {personalInfo.photoUrl && (
-            <div className="relative w-28 h-28 shrink-0">
+            <div className="relative w-32 h-32 shrink-0">
                 <Image
                     src={personalInfo.photoUrl}
                     alt={personalInfo.name}
-                    className="rounded-full object-cover"
+                    className="rounded-full object-cover border-4 border-gray-100 shadow-md"
                     fill
                     data-ai-hint="profile photo"
                 />
             </div>
           )}
           <div className='flex-grow'>
-            <h1 className="text-4xl font-bold tracking-tight text-primary-foreground">{personalInfo.name}</h1>
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-muted-foreground mt-2 text-xs">
-              <div className="flex items-center gap-1.5">
-                <Mail className="w-3 h-3"/>
+            <h1 className="text-5xl font-bold tracking-tight text-primary-foreground">{personalInfo.name}</h1>
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-muted-foreground mt-3 text-sm">
+              <a href={`mailto:${personalInfo.email}`} className="flex items-center gap-2 hover:text-primary">
+                <Mail className="w-4 h-4"/>
                 <span>{personalInfo.email}</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <Phone className="w-3 h-3"/>
+              </a>
+              <div className="flex items-center gap-2">
+                <Phone className="w-4 h-4"/>
                 <span>{personalInfo.phone}</span>
               </div>
-              <div className="flex items-center gap-1.5">
-                <MapPin className="w-3 h-3"/>
+              <div className="flex items-center gap-2">
+                <MapPin className="w-4 h-4"/>
                 <span>{personalInfo.address}</span>
               </div>
             </div>
           </div>
         </header>
 
-        <Separator className="my-6" />
-
-        <div className="grid grid-cols-12 gap-x-8 gap-y-6 flex-1">
+        <div className="grid grid-cols-12 gap-x-10 gap-y-8 flex-1">
           <div className="col-span-12 space-y-6">
             {/* Summary */}
             <section>
               <h2 className="text-lg font-bold text-accent-foreground tracking-wide uppercase">Summary</h2>
               <Separator className="bg-accent my-2 h-[2px]" />
-              <p className="text-sm">{summary.content}</p>
+              <p className="text-sm leading-relaxed">{summary.content}</p>
             </section>
           </div>
-          <div className="col-span-8 space-y-6">
+          <div className="col-span-8 space-y-8">
              {/* Experience */}
             <section>
               <h2 className="text-lg font-bold text-accent-foreground tracking-wide uppercase">Work Experience</h2>
               <Separator className="bg-accent my-2 h-[2px]" />
-              <div className="space-y-4">
+              <div className="space-y-5">
                 {experience.map((exp) => (
                   <div key={exp.id}>
                     <div className="flex justify-between items-baseline">
@@ -66,10 +64,10 @@ export function DefaultTemplate({ resume }: { resume: ResumeSchema }) {
                       <span className="text-xs text-muted-foreground">{exp.startDate} - {exp.endDate}</span>
                     </div>
                     <div className="flex justify-between items-baseline text-muted-foreground">
-                      <p className='font-medium'>{exp.company}</p>
+                      <p className='font-medium text-sm'>{exp.company}</p>
                       <p className="text-xs">{exp.location}</p>
                     </div>
-                    <ul className="mt-2 list-disc list-inside text-sm space-y-1">
+                    <ul className="mt-2 list-disc list-inside text-sm space-y-1.5 marker:text-accent">
                       {exp.description.split('\n').map((line, i) => line.trim() && <li key={i}>{line.replace(/^- /, '')}</li>)}
                     </ul>
                   </div>
@@ -91,7 +89,7 @@ export function DefaultTemplate({ resume }: { resume: ResumeSchema }) {
             </section>
           </div>
           
-          <div className="col-span-4 space-y-6">
+          <div className="col-span-4 space-y-8">
             {/* Education */}
             <section>
               <h2 className="text-lg font-bold text-accent-foreground tracking-wide uppercase">Education</h2>
@@ -113,7 +111,7 @@ export function DefaultTemplate({ resume }: { resume: ResumeSchema }) {
               <Separator className="bg-accent my-2 h-[2px]" />
               <div className="flex flex-wrap gap-2">
                 {skills.content.split(',').map(skill => skill.trim() && (
-                  <span key={skill} className="bg-secondary text-secondary-foreground text-xs px-2.5 py-1 rounded-full">{skill.trim()}</span>
+                  <span key={skill} className="bg-secondary text-secondary-foreground text-xs font-medium px-3 py-1 rounded-full">{skill.trim()}</span>
                 ))}
               </div>
             </section>

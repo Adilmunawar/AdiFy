@@ -11,7 +11,7 @@ export default function ResumeBuilder() {
         <ResumeForm />
       </ScrollArea>
       <ScrollArea className="h-full bg-secondary/50">
-        <div id="resume-preview" className="p-4 sm:p-8">
+        <div id="resume-container" className="p-4 sm:p-8">
             <ResumePreview />
         </div>
       </ScrollArea>
