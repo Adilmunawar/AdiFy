@@ -2,10 +2,11 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import AnimatedSection from "../animated-section";
 
 export default function ProvenTemplates() {
   return (
-    <section className="py-20 px-4 md:px-8 bg-blue-600 text-white">
+    <AnimatedSection className="py-20 px-4 md:px-8 bg-blue-600 text-white">
       <div className="max-w-7xl mx-auto text-center">
         <div className="flex justify-center items-center gap-2">
             <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
@@ -51,6 +52,6 @@ export default function ProvenTemplates() {
           </div>
         </div>
       </div>
-    </section>
+    </AnimatedSection>
   );
 }

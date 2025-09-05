@@ -1,9 +1,10 @@
+import AnimatedSection from "@/components/animated-section";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 export default function CallToAction() {
   return (
-    <section className="py-20 text-center bg-gray-50">
+    <AnimatedSection className="py-20 text-center bg-gray-50">
       <h2 className="text-4xl font-bold text-gray-800">
         Join over <span className="text-primary">53,584,000</span> users worldwide
       </h2>
@@ -15,6 +16,6 @@ export default function CallToAction() {
           Create My Resume
         </Button>
       </Link>
-    </section>
+    </AnimatedSection>
   );
 }

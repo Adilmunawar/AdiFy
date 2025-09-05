@@ -1,10 +1,11 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
+import AnimatedSection from "../animated-section";
 
 export default function Hero() {
   return (
-    <section className="container grid lg:grid-cols-2 gap-10 items-center py-20">
+    <AnimatedSection className="container grid lg:grid-cols-2 gap-10 items-center py-20">
       <div className="space-y-6">
         <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight">
           This resume builder gets you{" "}
@@ -35,7 +36,7 @@ export default function Hero() {
           data-ai-hint="resume builder interface"
         />
       </div>
-    </section>
+    </AnimatedSection>
   );
 }
 

@@ -1,5 +1,6 @@
 import { Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
 import Link from 'next/link';
+import Logo from "../logo";
 
 const footerLinks = {
     "Product": [
@@ -31,7 +32,10 @@ export default function Footer() {
     return (
       <footer className="bg-gray-900 text-white">
         <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
+            <div className="md:col-span-1 mb-8 md:mb-0">
+                <Logo textClassName="text-white" iconClassName="text-white"/>
+            </div>
             {Object.entries(footerLinks).map(([title, links]) => (
                 <div key={title}>
                     <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">{title}</h3>
@@ -48,13 +52,13 @@ export default function Footer() {
             ))}
           </div>
           <div className="mt-12 border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center">
-            <div className="flex space-x-6">
+            <p className="text-base text-gray-400">&copy; 2024 Adify, Inc. All rights reserved.</p>
+            <div className="flex space-x-6 mt-4 md:mt-0">
                 <Link href="#" className="text-gray-400 hover:text-white"><Facebook /></Link>
                 <Link href="#" className="text-gray-400 hover:text-white"><Twitter /></Link>
                 <Link href="#" className="text-gray-400 hover:text-white"><Linkedin /></Link>
                 <Link href="#" className="text-gray-400 hover:text-white"><Instagram /></Link>
             </div>
-            <p className="mt-8 md:mt-0 text-base text-gray-400">&copy; 2024 Adify, Inc. All rights reserved.</p>
           </div>
         </div>
       </footer>

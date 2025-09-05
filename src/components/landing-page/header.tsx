@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
 import { useState } from "react";
+import Logo from "../logo";
 
 const navLinks = [
   { name: "Resume Templates", href: "#" },
@@ -18,8 +19,8 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container h-14 flex items-center justify-between">
-        <Link href="/" className="font-bold text-xl text-primary">
-          Adify
+        <Link href="/">
+          <Logo />
         </Link>
         <nav className="hidden md:flex items-center gap-6 text-sm">
           {navLinks.map((link) => (
@@ -48,8 +49,8 @@ export default function Header() {
             </SheetTrigger>
             <SheetContent side="right">
               <div className="flex flex-col gap-6 p-6">
-                <Link href="/" className="font-bold text-2xl text-primary mb-4" onClick={() => setIsSheetOpen(false)}>
-                  Adify
+                <Link href="/" onClick={() => setIsSheetOpen(false)}>
+                  <Logo />
                 </Link>
                 {navLinks.map((link) => (
                   <Link

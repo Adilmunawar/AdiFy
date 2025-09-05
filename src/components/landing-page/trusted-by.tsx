@@ -1,4 +1,5 @@
 import React from 'react';
+import AnimatedSection from '../animated-section';
 
 const logos = [
     { name: "Google" },
@@ -11,7 +12,7 @@ const logos = [
 
 export default function TrustedBy() {
   return (
-    <section className="py-12">
+    <AnimatedSection className="py-12">
         <div className="container">
             <p className="text-center text-sm font-semibold text-gray-500 uppercase tracking-wider">
                 Our resumes are trusted by employees at:
@@ -24,6 +25,6 @@ export default function TrustedBy() {
                 ))}
             </div>
         </div>
-    </section>
+    </AnimatedSection>
   );
 }

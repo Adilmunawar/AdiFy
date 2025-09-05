@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Star } from "lucide-react";
+import AnimatedSection from "../animated-section";
 
 const testimonials = [
   {
@@ -24,7 +25,7 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section className="py-20 px-4 md:px-8 bg-gray-50">
+    <AnimatedSection className="py-20 px-4 md:px-8 bg-gray-50">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-3xl font-bold text-center text-gray-800">
           Reviewed by the community. Trusted by professionals.
@@ -48,6 +49,6 @@ export default function Testimonials() {
           ))}
         </div>
       </div>
-    </section>
+    </AnimatedSection>
   );
 }

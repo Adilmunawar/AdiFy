@@ -4,6 +4,7 @@ import {
     AccordionItem,
     AccordionTrigger,
   } from "@/components/ui/accordion"
+import AnimatedSection from "../animated-section"
   
   const faqItems = [
     {
@@ -30,7 +31,7 @@ import {
   
   export default function Faq() {
     return (
-      <section className="py-20 px-4 md:px-8 bg-gray-50">
+      <AnimatedSection className="py-20 px-4 md:px-8 bg-gray-50">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">
             Frequently Asked Questions
@@ -46,7 +47,7 @@ import {
             ))}
           </Accordion>
         </div>
-      </section>
+      </AnimatedSection>
     );
   }
   

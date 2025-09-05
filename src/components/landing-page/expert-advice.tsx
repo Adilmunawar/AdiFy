@@ -2,6 +2,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
+import AnimatedSection from "../animated-section";
 
 const adviceItems = [
   {
@@ -40,7 +41,7 @@ const videoItems = [
 
 export default function ExpertAdvice() {
   return (
-    <section className="py-20 px-4 md:px-8">
+    <AnimatedSection>
       <div className="max-w-7xl mx-auto">
         <h2 className="text-3xl font-bold text-center text-gray-800 mb-4">
           The Elevator
@@ -97,6 +98,6 @@ export default function ExpertAdvice() {
             ))}
         </div>
       </div>
-    </section>
+    </AnimatedSection>
   );
 }
