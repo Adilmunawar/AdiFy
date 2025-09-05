@@ -9,12 +9,29 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { ImageUpload } from '@/components/image-upload';
 
 export default function PersonalInfoForm() {
   const form = useFormContext();
 
   return (
     <div className="space-y-4 pt-4">
+      <FormField
+        control={form.control}
+        name="personalInfo.photoUrl"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>Profile Photo</FormLabel>
+            <FormControl>
+              <ImageUpload
+                value={field.value || ''}
+                onChange={field.onChange}
+              />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
       <FormField
         control={form.control}
         name="personalInfo.name"

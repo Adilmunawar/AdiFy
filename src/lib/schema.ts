@@ -5,6 +5,7 @@ export const personalInfoSchema = z.object({
   email: z.string().email('Invalid email address'),
   phone: z.string().min(1, 'Phone number is required'),
   address: z.string().min(1, 'Address is required'),
+  photoUrl: z.string().optional(),
 });
 
 export const summarySchema = z.object({

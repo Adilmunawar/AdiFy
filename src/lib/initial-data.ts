@@ -7,6 +7,7 @@ export const initialData: ResumeSchema = {
     email: 'adil.munawar@example.com',
     phone: '+1 (123) 456-7890',
     address: '123 Tech Street, Silicon Valley, CA 94000',
+    photoUrl: 'https://picsum.photos/200/200',
   },
   summary: {
     content: 'Dynamic and results-oriented professional with a proven track record of success in project management and software development. Seeking to leverage expertise in AI and web technologies to drive innovation at a forward-thinking company.',
@@ -21,6 +22,15 @@ export const initialData: ResumeSchema = {
       endDate: 'Present',
       description: '- Led the development of a scalable e-commerce platform, resulting in a 30% increase in sales.\n- Mentored junior developers and conducted code reviews to ensure high-quality code.\n- Collaborated with cross-functional teams to define, design, and ship new features.',
     },
+     {
+      id: crypto.randomUUID(),
+      jobTitle: 'Software Engineer',
+      company: 'Innovate LLC',
+      location: 'Austin, TX',
+      startDate: 'Jun 2018',
+      endDate: 'Dec 2019',
+      description: '- Developed and maintained web applications using React and Node.js.\n- Contributed to the design and implementation of new features.\n- Worked in an Agile environment to deliver high-quality software.',
+    }
   ],
   education: [
     {
@@ -29,6 +39,13 @@ export const initialData: ResumeSchema = {
       school: 'Stanford University',
       location: 'Stanford, CA',
       graduationDate: 'Jun 2019',
+    },
+    {
+      id: crypto.randomUUID(),
+      degree: 'Bachelor of Science in Computer Science',
+      school: 'University of Texas at Austin',
+      location: 'Austin, TX',
+      graduationDate: 'May 2018',
     },
   ],
   projects: [
@@ -44,6 +61,6 @@ export const initialData: ResumeSchema = {
     },
   ],
   skills: {
-    content: 'JavaScript, TypeScript, React, Next.js, Node.js, Python, SQL, Docker, AWS',
+    content: 'JavaScript, TypeScript, React, Next.js, Node.js, Python, SQL, Docker, AWS, Terraform, Kubernetes, CI/CD',
   },
 };
