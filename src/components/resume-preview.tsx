@@ -2,12 +2,14 @@
 
 import { useResumeStore } from '@/lib/store';
 import { Card } from '@/components/ui/card';
-import { Mail, Phone, MapPin } from 'lucide-react';
 import { DefaultTemplate } from './templates/default-template';
 import { ModernTemplate } from './templates/modern-template';
 import { ClassicTemplate } from './templates/classic-template';
+import { ExecutiveTemplate } from './templates/executive-template';
+import { CreativeTemplate } from './templates/creative-template';
+import { MinimalistTemplate } from './templates/minimalist-template';
 
-export default function ResumePreview({ isThumbnail = false }) {
+export default function ResumePreview() {
   const { resume } = useResumeStore();
   const { template } = resume;
 
@@ -17,6 +19,12 @@ export default function ResumePreview({ isThumbnail = false }) {
         return <ModernTemplate resume={resume} />;
       case 'classic':
         return <ClassicTemplate resume={resume} />;
+      case 'executive':
+        return <ExecutiveTemplate resume={resume} />;
+      case 'creative':
+        return <CreativeTemplate resume={resume} />;
+      case 'minimalist':
+        return <MinimalistTemplate resume={resume} />;
       default:
         return <DefaultTemplate resume={resume} />;
     }

@@ -92,7 +92,8 @@
 .template-thumbnail {
     transform: scale(0.2);
     transform-origin: top left;
-    height: 275px;
-    width: 212px;
+    height: 279px; /* 11in * 96px/in * 0.2 */
+    width: 216px;  /* 8.5in * 96px/in * 0.2 */
     overflow: hidden;
+    border-radius: calc(var(--radius) - 2px);
 }

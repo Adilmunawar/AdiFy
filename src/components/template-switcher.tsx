@@ -9,13 +9,14 @@ import {
   DialogDescription,
 } from '@/components/ui/dialog';
 import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { cn } from '@/lib/utils';
 import { DefaultTemplate } from './templates/default-template';
 import { ModernTemplate } from './templates/modern-template';
 import { ClassicTemplate } from './templates/classic-template';
-import { cn } from '@/lib/utils';
-
+import { ExecutiveTemplate } from './templates/executive-template';
+import { CreativeTemplate } from './templates/creative-template';
+import { MinimalistTemplate } from './templates/minimalist-template';
 
 type TemplateSwitcherProps = {
   isOpen: boolean;
@@ -26,6 +27,9 @@ const templates = [
   { id: 'default', name: 'Default', component: DefaultTemplate },
   { id: 'modern', name: 'Modern', component: ModernTemplate },
   { id: 'classic', name: 'Classic', component: ClassicTemplate },
+  { id: 'executive', name: 'Executive', component: ExecutiveTemplate },
+  { id: 'creative', name: 'Creative', component: CreativeTemplate },
+  { id: 'minimalist', name: 'Minimalist', component: MinimalistTemplate },
 ];
 
 export default function TemplateSwitcher({ isOpen, onOpenChange }: TemplateSwitcherProps) {
@@ -38,7 +42,7 @@ export default function TemplateSwitcher({ isOpen, onOpenChange }: TemplateSwitc
 
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-4xl h-[80vh]">
+      <DialogContent className="max-w-6xl h-[90vh]">
         <DialogHeader>
           <DialogTitle>Choose a Template</DialogTitle>
           <DialogDescription>
@@ -46,15 +50,15 @@ export default function TemplateSwitcher({ isOpen, onOpenChange }: TemplateSwitc
           </DialogDescription>
         </DialogHeader>
         <ScrollArea className="h-full">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-1">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 p-1 pr-6">
             {templates.map((template) => {
                 const TemplateComponent = template.component;
                 return (
-                <div key={template.id} className="space-y-2">
+                <div key={template.id} className="space-y-2 group">
                     <Card 
                         className={cn(
-                            "cursor-pointer hover:border-primary transition-colors",
-                            resume.template === template.id && "border-primary border-2"
+                            "cursor-pointer hover:border-primary transition-all duration-200 border-2 border-transparent group-hover:scale-105",
+                            resume.template === template.id && "border-primary ring-2 ring-primary"
                         )}
                         onClick={() => handleSelectTemplate(template.id)}
                     >
