@@ -16,8 +16,12 @@ export default function ResumePreview() {
   const { resume: storedResume } = useResumeStore();
   const form = useFormContext<ResumeSchemaType>();
   
-  // Use form state if available (for instant updates), otherwise use stored state
-  const resume = form ? form.watch() : storedResume;
+  // This will trigger re-renders when the form is updated
+  const watchedData = form?.watch();
+
+  // Always use the stored resume as the source of truth for rendering.
+  // This prevents brief moments of invalid data during form updates.
+  const resume = storedResume;
 
   // Ensure data is valid before rendering
   const parseResult = resumeSchema.safeParse(resume);
