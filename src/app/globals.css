@@ -129,3 +129,8 @@
       animation: marquee 25s linear infinite;
     }
   }
+
+#resume-container {
+  transform: scale(0.75);
+  transform-origin: top;
+}
