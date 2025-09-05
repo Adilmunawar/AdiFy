@@ -1,6 +1,7 @@
 import type { ResumeSchema } from './schema';
 
 export const initialData: ResumeSchema = {
+  template: 'default',
   personalInfo: {
     name: 'Adil Munawar',
     email: 'adil.munawar@example.com',

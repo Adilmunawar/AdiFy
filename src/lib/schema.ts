@@ -40,6 +40,7 @@ export const skillsSchema = z.object({
 });
 
 export const resumeSchema = z.object({
+  template: z.string(),
   personalInfo: personalInfoSchema,
   summary: summarySchema,
   experience: z.array(experienceSchema),

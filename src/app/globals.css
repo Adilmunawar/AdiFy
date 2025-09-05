@@ -91,3 +91,11 @@
     display: none;
   }
 }
+
+.template-thumbnail {
+    transform: scale(0.2);
+    transform-origin: top left;
+    height: 275px;
+    width: 212px;
+    overflow: hidden;
+}

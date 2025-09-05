@@ -6,6 +6,7 @@ import { initialData } from './initial-data';
 interface ResumeState {
   resume: ResumeSchema;
   updateResume: (resume: ResumeSchema) => void;
+  setTemplate: (template: string) => void;
   resetResume: () => void;
 }
 
@@ -14,6 +15,7 @@ export const useResumeStore = create<ResumeState>()(
     (set) => ({
       resume: initialData,
       updateResume: (resume) => set({ resume }),
+      setTemplate: (template) => set((state) => ({ resume: { ...state.resume, template } })),
       resetResume: () => set({ resume: initialData }),
     }),
     {
