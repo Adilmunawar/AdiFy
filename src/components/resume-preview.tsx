@@ -20,9 +20,9 @@ export default function ResumePreview() {
   const parseResult = resumeSchema.safeParse(resume);
 
   const renderTemplate = () => {
+    // This check prevents rendering with incomplete or invalid data,
+    // which was causing the preview to get stuck in a loading state.
     if (!parseResult.success) {
-      // This check prevents rendering with incomplete or invalid data,
-      // which was causing the preview to get stuck in a loading state.
       return (
           <div className={`w-full max-w-[8.5in] aspect-[8.5/11] mx-auto flex items-center justify-center`}>
               <p>Loading preview...</p>

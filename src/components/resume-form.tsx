@@ -40,7 +40,7 @@ export default function ResumeForm({ children }: { children: React.ReactNode }) 
     debouncedUpdate(watchedData);
   }, [watchedData, debouncedUpdate]);
   
-  // Sync form with store if it changes from outside (e.g. reset)
+  // Sync form with store if it changes from outside (e.g. reset, template change)
   useEffect(() => {
     methods.reset(resume);
   }, [resume, methods]);
