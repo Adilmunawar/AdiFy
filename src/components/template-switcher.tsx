@@ -1,7 +1,6 @@
 'use client';
 
 import { useFormContext } from 'react-hook-form';
-import { useResumeStore } from '@/lib/store';
 import type { ResumeSchema } from '@/lib/schema';
 import {
   Dialog,
@@ -35,13 +34,16 @@ const templates = [
 ];
 
 export default function TemplateSwitcher({ isOpen, onOpenChange }: TemplateSwitcherProps) {
-  const { setTemplate } = useResumeStore();
   const form = useFormContext<ResumeSchema>();
+  
+  if(!form) {
+    return null;
+  }
+
   const currentResume = form.watch();
 
   const handleSelectTemplate = (templateId: string) => {
-    form.setValue('template', templateId);
-    setTemplate(templateId);
+    form.setValue('template', templateId, { shouldDirty: true });
     onOpenChange(false);
   };
 

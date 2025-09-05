@@ -21,19 +21,18 @@ export default function ResumePreview() {
 
   // Ensure data is valid before rendering
   const parseResult = resumeSchema.safeParse(resume);
-  if (!parseResult.success) {
-    // You could show a loading/error state here
-    return (
-        <Card className={`w-full max-w-[8.5in] aspect-[8.5/11] mx-auto shadow-lg print:shadow-none flex items-center justify-center`}>
-            <p>Loading preview...</p>
-        </Card>
-    );
-  }
-
-  const validResume = parseResult.data;
-  const { template } = validResume;
 
   const renderTemplate = () => {
+    if (!parseResult.success) {
+      return (
+          <div className={`w-full max-w-[8.5in] aspect-[8.5/11] mx-auto flex items-center justify-center`}>
+              <p>Loading preview...</p>
+          </div>
+      );
+    }
+    
+    const validResume = parseResult.data;
+    const { template } = validResume;
     switch(template) {
       case 'modern':
         return <ModernTemplate resume={validResume} />;

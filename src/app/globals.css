@@ -100,8 +100,8 @@
 .template-thumbnail {
     transform: scale(0.25);
     transform-origin: top left;
-    height: 279px; /* 11in * 96px/in * 0.25 */
-    width: 216px;  /* 8.5in * 96px/in * 0.25 */
+    height: calc(11in * 0.25);
+    width: calc(8.5in * 0.25);
     overflow: hidden;
     border-radius: calc(var(--radius) - 2px);
     border: 1px solid hsl(var(--border));
