@@ -26,6 +26,18 @@ import AnimatedSection from "../animated-section"
     {
         question: "How many resume templates are available?",
         answer: "We offer a wide variety of professionally designed templates. Our library is constantly updated to keep up with the latest trends in resume design."
+    },
+    {
+      question: "Is my data safe?",
+      answer: "Your privacy is our top priority. We use industry-standard encryption to protect your data, and we never share your personal information with third parties without your consent."
+    },
+    {
+      question: "Can I create a cover letter as well?",
+      answer: "Yes! Our platform also includes a cover letter builder. You can create a matching cover letter to go with your resume for a cohesive and professional application."
+    },
+    {
+      question: "What if I need help or have questions?",
+      answer: "We offer customer support to all our users. You can reach out to our team via email or live chat for assistance with any questions or issues you may have."
     }
   ]
   
