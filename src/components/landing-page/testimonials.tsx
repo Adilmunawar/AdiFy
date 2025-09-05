@@ -3,15 +3,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Star } from "lucide-react";
 import AnimatedSection from "../animated-section";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel"
-import Autoplay from "embla-carousel-autoplay"
-import React from "react";
 
 const testimonials = [
     {
@@ -49,13 +40,23 @@ const testimonials = [
       name: "Daniel K.",
       title: "UX Researcher",
       review: "I've tried many resume builders, and this is by far the most user-friendly and effective. The ability to tailor my resume for each job is fantastic."
+    },
+    {
+      rating: 5,
+      name: "Olivia M.",
+      title: "Product Manager",
+      review: "The customization options are fantastic. I created a unique resume that helped me stand out and get noticed. A must-have tool for job seekers."
+    },
+    {
+      rating: 5,
+      name: "James T.",
+      title: "Data Scientist",
+      review: "The ATS-friendly templates are a lifesaver. I finally started getting responses from top tech companies after using this builder."
     }
   ];
 
 export default function Testimonials() {
-  const plugin = React.useRef(
-    Autoplay({ delay: 2000, stopOnInteraction: false })
-  )
+  const duplicatedTestimonials = [...testimonials, ...testimonials];
 
   return (
     <AnimatedSection className="py-20 px-4 md:px-8 bg-gray-50">
@@ -63,20 +64,12 @@ export default function Testimonials() {
         <h2 className="text-3xl font-bold text-center text-gray-800">
           Reviewed by the community. Trusted by professionals.
         </h2>
-        <Carousel
-          plugins={[plugin.current]}
-          className="w-full mt-12"
-          onMouseEnter={plugin.current.stop}
-          onMouseLeave={plugin.current.reset}
-          opts={{
-            align: "start",
-            loop: true,
-          }}
-        >
-          <CarouselContent className="-ml-4">
-            {testimonials.map((testimonial, index) => (
-              <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 pl-4">
-                <div className="p-1 h-full">
+        <div className="w-full mt-12 overflow-hidden relative">
+          <div className="absolute top-0 left-0 h-full w-16 bg-gradient-to-r from-gray-50 to-transparent z-10"></div>
+          <div className="absolute top-0 right-0 h-full w-16 bg-gradient-to-l from-gray-50 to-transparent z-10"></div>
+          <div className="flex animate-marquee hover:[animation-play-state:paused]">
+            {duplicatedTestimonials.map((testimonial, index) => (
+                <div key={index} className="flex-shrink-0 w-80 mx-4">
                   <Card className="h-full">
                     <CardContent className="p-6 flex flex-col justify-between h-full">
                       <div>
@@ -94,12 +87,9 @@ export default function Testimonials() {
                     </CardContent>
                   </Card>
                 </div>
-              </CarouselItem>
             ))}
-          </CarouselContent>
-          <CarouselPrevious className="hidden sm:flex" />
-          <CarouselNext className="hidden sm:flex" />
-        </Carousel>
+          </div>
+        </div>
       </div>
     </AnimatedSection>
   );
