@@ -9,7 +9,6 @@ import { ExecutiveTemplate } from './templates/executive-template';
 import { CreativeTemplate } from './templates/creative-template';
 import { MinimalistTemplate } from './templates/minimalist-template';
 import { resumeSchema } from '@/lib/schema';
-import type { ResumeSchema as ResumeSchemaType } from '@/lib/schema';
 
 export default function ResumePreview() {
   const resume = useResumeStore((state) => state.resume);
@@ -17,8 +16,6 @@ export default function ResumePreview() {
 
   const renderTemplate = () => {
     if (!parseResult.success) {
-      // This fallback is the cause of the "Loading preview..." issue.
-      // It gets triggered when the data is momentarily out of sync.
       return (
           <div className={`w-full max-w-[8.5in] aspect-[8.5/11] mx-auto flex items-center justify-center`}>
               <p>Loading preview...</p>

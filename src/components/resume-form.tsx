@@ -31,15 +31,16 @@ export default function ResumeForm() {
     defaultValues: resume,
   });
 
-  const watchedData = methods.watch();
-
   const debouncedUpdate = useDebouncedCallback((data: ResumeSchema) => {
     updateResume(data);
   }, 500);
 
   useEffect(() => {
-    debouncedUpdate(watchedData);
-  }, [watchedData, debouncedUpdate]);
+    const subscription = methods.watch((value) => {
+      debouncedUpdate(value as ResumeSchema);
+    });
+    return () => subscription.unsubscribe();
+  }, [methods, debouncedUpdate]);
   
   // Sync form with store if it changes from outside (e.g. reset, template change)
   useEffect(() => {

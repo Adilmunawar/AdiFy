@@ -1,6 +1,6 @@
 'use client';
 
-import { useFormContext } from 'react-hook-form';
+import { useResumeStore } from '@/lib/store';
 import type { ResumeSchema } from '@/lib/schema';
 import {
   Dialog,
@@ -34,16 +34,10 @@ const templates = [
 ];
 
 export default function TemplateSwitcher({ isOpen, onOpenChange }: TemplateSwitcherProps) {
-  const form = useFormContext<ResumeSchema>();
-  
-  if(!form) {
-    return null;
-  }
-
-  const currentResume = form.watch();
+  const { resume, setTemplate } = useResumeStore();
 
   const handleSelectTemplate = (templateId: string) => {
-    form.setValue('template', templateId, { shouldDirty: true });
+    setTemplate(templateId);
     onOpenChange(false);
   };
 
@@ -65,14 +59,14 @@ export default function TemplateSwitcher({ isOpen, onOpenChange }: TemplateSwitc
                     <Card 
                         className={cn(
                             "cursor-pointer hover:border-primary transition-all duration-200 border-2 border-transparent group-hover:scale-105",
-                            currentResume.template === template.id && "border-primary ring-2 ring-primary"
+                            resume.template === template.id && "border-primary ring-2 ring-primary"
                         )}
                         onClick={() => handleSelectTemplate(template.id)}
                     >
                     <CardContent className="p-0">
                         <div className="template-thumbnail">
                             <div className="w-[8.5in] h-[11in] bg-white">
-                                <TemplateComponent resume={currentResume} />
+                                <TemplateComponent resume={resume as ResumeSchema} />
                             </div>
                         </div>
                     </CardContent>
