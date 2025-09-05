@@ -21,9 +21,10 @@ import EducationForm from './forms/education-form';
 import ProjectsForm from './forms/projects-form';
 import SkillsForm from './forms/skills-form';
 import { ScrollArea } from './ui/scroll-area';
+import TemplateSwitcher from './template-switcher';
 
-export default function ResumeForm({ children }: { children: React.ReactNode }) {
-  const { resume, updateResume } = useResumeStore();
+export default function ResumeForm() {
+  const { resume, updateResume, isTemplateSwitcherOpen, setTemplateSwitcherOpen } = useResumeStore();
 
   const methods = useForm<ResumeSchema>({
     resolver: zodResolver(resumeSchema),
@@ -94,7 +95,7 @@ export default function ResumeForm({ children }: { children: React.ReactNode }) 
           </Accordion>
         </form>
       </ScrollArea>
-      {children}
+      <TemplateSwitcher isOpen={isTemplateSwitcherOpen} onOpenChange={setTemplateSwitcherOpen} />
     </FormProvider>
   );
 }

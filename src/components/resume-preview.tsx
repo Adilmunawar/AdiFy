@@ -12,17 +12,13 @@ import { resumeSchema } from '@/lib/schema';
 import type { ResumeSchema as ResumeSchemaType } from '@/lib/schema';
 
 export default function ResumePreview() {
-  // Always use the stored resume as the source of truth for rendering.
-  // This prevents brief moments of invalid data during form updates.
   const resume = useResumeStore((state) => state.resume);
-
-  // Ensure data is valid before rendering
   const parseResult = resumeSchema.safeParse(resume);
 
   const renderTemplate = () => {
-    // This check prevents rendering with incomplete or invalid data,
-    // which was causing the preview to get stuck in a loading state.
     if (!parseResult.success) {
+      // This fallback is the cause of the "Loading preview..." issue.
+      // It gets triggered when the data is momentarily out of sync.
       return (
           <div className={`w-full max-w-[8.5in] aspect-[8.5/11] mx-auto flex items-center justify-center`}>
               <p>Loading preview...</p>
