@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useResumeStore } from '@/lib/store';
@@ -12,6 +13,14 @@ import type { experienceSchema } from '@/lib/schema';
 import type { z } from 'zod';
 
 type Experience = z.infer<typeof experienceSchema>;
+
+const getUUID = () => {
+    if (typeof window !== 'undefined' && window.crypto) {
+      return window.crypto.randomUUID();
+    }
+    // Fallback for non-browser environments
+    return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+}
 
 export default function ExperienceForm() {
   const { resume, updateResume } = useResumeStore();
@@ -31,7 +40,7 @@ export default function ExperienceForm() {
   }
 
   const addExperience = () => {
-    const newExperience = [...experience, { id: crypto.randomUUID(), jobTitle: '', company: '', location: '', startDate: '', endDate: '', description: '' }];
+    const newExperience = [...experience, { id: getUUID(), jobTitle: '', company: '', location: '', startDate: '', endDate: '', description: '' }];
     updateResume({ ...resume, experience: newExperience });
   };
 

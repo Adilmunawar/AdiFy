@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useResumeStore } from '@/lib/store';
@@ -8,6 +9,14 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import AiRefineButton from '../ai-refine-button';
+
+const getUUID = () => {
+    if (typeof window !== 'undefined' && window.crypto) {
+      return window.crypto.randomUUID();
+    }
+    // Fallback for non-browser environments
+    return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+}
 
 export default function ProjectsForm() {
   const { resume, updateResume } = useResumeStore();
@@ -27,7 +36,7 @@ export default function ProjectsForm() {
   }
 
   const addProject = () => {
-    const newProjects = [...projects, { id: crypto.randomUUID(), name: '', description: '' }];
+    const newProjects = [...projects, { id: getUUID(), name: '', description: '' }];
     updateResume({ ...resume, projects: newProjects });
   };
 
