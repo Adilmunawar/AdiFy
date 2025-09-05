@@ -9,37 +9,25 @@ import { ClassicTemplate } from './templates/classic-template';
 import { ExecutiveTemplate } from './templates/executive-template';
 import { CreativeTemplate } from './templates/creative-template';
 import { MinimalistTemplate } from './templates/minimalist-template';
-import { resumeSchema } from '@/lib/schema';
 
 export default function ResumePreview() {
-  const resume = useResumeStore((state) => state.resume);
-  const parseResult = resumeSchema.safeParse(resume);
+  const { resume } = useResumeStore();
+  const { template } = resume;
 
   const renderTemplate = () => {
-    // Only render if the resume data is valid
-    if (!parseResult.success) {
-      return (
-          <div className={`w-full max-w-[8.5in] aspect-[8.5/11] mx-auto flex items-center justify-center`}>
-              <p>Loading preview...</p>
-          </div>
-      );
-    }
-    
-    const validResume = parseResult.data;
-    const { template } = validResume;
     switch(template) {
       case 'modern':
-        return <ModernTemplate resume={validResume} />;
+        return <ModernTemplate resume={resume} />;
       case 'classic':
-        return <ClassicTemplate resume={validResume} />;
+        return <ClassicTemplate resume={resume} />;
       case 'executive':
-        return <ExecutiveTemplate resume={validResume} />;
+        return <ExecutiveTemplate resume={resume} />;
       case 'creative':
-        return <CreativeTemplate resume={validResume} />;
+        return <CreativeTemplate resume={resume} />;
       case 'minimalist':
-        return <MinimalistTemplate resume={validResume} />;
+        return <MinimalistTemplate resume={resume} />;
       default:
-        return <DefaultTemplate resume={validResume} />;
+        return <DefaultTemplate resume={resume} />;
     }
   }
 

@@ -3,18 +3,11 @@
 
 import { useResumeStore } from '@/lib/store';
 import { PlusCircle, Trash2 } from 'lucide-react';
+import { v4 as uuidv4 } from 'uuid';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
-
-const getUUID = () => {
-    if (typeof window !== 'undefined' && window.crypto) {
-      return window.crypto.randomUUID();
-    }
-    // Fallback for non-browser environments
-    return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-}
 
 export default function EducationForm() {
   const { resume, updateResume } = useResumeStore();
@@ -28,7 +21,7 @@ export default function EducationForm() {
   };
 
   const addEducation = () => {
-    const newEducation = [...education, { id: getUUID(), degree: '', school: '', location: '', graduationDate: '' }];
+    const newEducation = [...education, { id: uuidv4(), degree: '', school: '', location: '', graduationDate: '' }];
     updateResume({ ...resume, education: newEducation });
   };
 

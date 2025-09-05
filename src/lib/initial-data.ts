@@ -1,13 +1,6 @@
 
+import { v4 as uuidv4 } from 'uuid';
 import type { ResumeSchema } from './schema';
-
-const getUUID = () => {
-  if (typeof window !== 'undefined' && window.crypto) {
-    return window.crypto.randomUUID();
-  }
-  // Fallback for non-browser environments
-  return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-}
 
 export const initialData: ResumeSchema = {
   template: 'default',
@@ -23,7 +16,7 @@ export const initialData: ResumeSchema = {
   },
   experience: [
     {
-      id: getUUID(),
+      id: uuidv4(),
       jobTitle: 'Senior Software Engineer',
       company: 'Tech Solutions Inc.',
       location: 'San Francisco, CA',
@@ -32,7 +25,7 @@ export const initialData: ResumeSchema = {
       description: '- Led the development of a scalable e-commerce platform, resulting in a 30% increase in sales.\n- Mentored junior developers and conducted code reviews to ensure high-quality code.\n- Collaborated with cross-functional teams to define, design, and ship new features.',
     },
      {
-      id: getUUID(),
+      id: uuidv4(),
       jobTitle: 'Software Engineer',
       company: 'Innovate LLC',
       location: 'Austin, TX',
@@ -43,14 +36,14 @@ export const initialData: ResumeSchema = {
   ],
   education: [
     {
-      id: getUUID(),
+      id: uuidv4(),
       degree: 'Master of Science in Computer Science',
       school: 'Stanford University',
       location: 'Stanford, CA',
       graduationDate: 'Jun 2019',
     },
     {
-      id: getUUID(),
+      id: uuidv4(),
       degree: 'Bachelor of Science in Computer Science',
       school: 'University of Texas at Austin',
       location: 'Austin, TX',
@@ -59,12 +52,12 @@ export const initialData: ResumeSchema = {
   ],
   projects: [
     {
-      id: getUUID(),
+      id: uuidv4(),
       name: 'Adigon',
       description: 'A machine learning project to predict stock market trends with 95% accuracy.',
     },
     {
-      id: getUUID(),
+      id: uuidv4(),
       name: 'Adinox',
       description: 'A full-stack web application for real-time collaborative document editing.',
     },
@@ -73,3 +66,4 @@ export const initialData: ResumeSchema = {
     content: 'JavaScript, TypeScript, React, Next.js, Node.js, Python, SQL, Docker, AWS, Terraform, Kubernetes, CI/CD',
   },
 };
+

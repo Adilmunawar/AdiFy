@@ -2,8 +2,10 @@
 
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
+import { useDebounce } from 'use-debounce';
 import type { ResumeSchema } from './schema';
 import { initialData } from './initial-data';
+import { useEffect, useState } from 'react';
 
 interface ResumeState {
   resume: ResumeSchema;
@@ -30,3 +32,30 @@ export const useResumeStore = create<ResumeState>()(
     }
   )
 );
+
+export const useDebouncedResumeStore = () => {
+    const store = useResumeStore();
+    const [debouncedResume] = useDebounce(store.resume, 300);
+
+    const [hydrated, setHydrated] = useState(false);
+
+    useEffect(() => {
+        setHydrated(true);
+    }, []);
+
+    if(!hydrated) {
+        return {
+            resume: initialData,
+            isTemplateSwitcherOpen: false,
+            updateResume: () => {},
+            setTemplate: () => {},
+            setTemplateSwitcherOpen: () => {},
+            resetResume: () => {},
+        };
+    }
+  
+    return {
+      ...store,
+      resume: debouncedResume,
+    };
+  };

@@ -3,6 +3,7 @@
 
 import { useResumeStore } from '@/lib/store';
 import { PlusCircle, Trash2 } from 'lucide-react';
+import { v4 as uuidv4 } from 'uuid';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -13,14 +14,6 @@ import type { experienceSchema } from '@/lib/schema';
 import type { z } from 'zod';
 
 type Experience = z.infer<typeof experienceSchema>;
-
-const getUUID = () => {
-    if (typeof window !== 'undefined' && window.crypto) {
-      return window.crypto.randomUUID();
-    }
-    // Fallback for non-browser environments
-    return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-}
 
 export default function ExperienceForm() {
   const { resume, updateResume } = useResumeStore();
@@ -40,7 +33,7 @@ export default function ExperienceForm() {
   }
 
   const addExperience = () => {
-    const newExperience = [...experience, { id: getUUID(), jobTitle: '', company: '', location: '', startDate: '', endDate: '', description: '' }];
+    const newExperience = [...experience, { id: uuidv4(), jobTitle: '', company: '', location: '', startDate: '', endDate: '', description: '' }];
     updateResume({ ...resume, experience: newExperience });
   };
 

@@ -41,61 +41,14 @@ export const skillsSchema = z.object({
   content: z.string(),
 });
 
-export const resumeSchema = z.discriminatedUnion('template', [
-    z.object({
-      template: z.literal('default'),
-      personalInfo: personalInfoSchema,
-      summary: summarySchema,
-      experience: z.array(experienceSchema),
-      education: z.array(educationSchema),
-      projects: z.array(projectSchema),
-      skills: skillsSchema,
-    }),
-    z.object({
-        template: z.literal('modern'),
-        personalInfo: personalInfoSchema,
-        summary: summarySchema,
-        experience: z.array(experienceSchema),
-        education: z.array(educationSchema),
-        projects: z.array(projectSchema),
-        skills: skillsSchema,
-    }),
-    z.object({
-        template: z.literal('classic'),
-        personalInfo: personalInfoSchema,
-        summary: summarySchema,
-        experience: z.array(experienceSchema),
-        education: z.array(educationSchema),
-        projects: z.array(projectSchema),
-        skills: skillsSchema,
-    }),
-    z.object({
-        template: z.literal('executive'),
-        personalInfo: personalInfoSchema,
-        summary: summarySchema,
-        experience: z.array(experienceSchema),
-        education: z.array(educationSchema),
-        projects: z.array(projectSchema),
-        skills: skillsSchema,
-    }),
-    z.object({
-        template: z.literal('creative'),
-        personalInfo: personalInfoSchema,
-        summary: summarySchema,
-        experience: z.array(experienceSchema),
-        education: z.array(educationSchema),
-        projects: z.array(projectSchema),
-        skills: skillsSchema,
-    }),
-    z.object({
-        template: z.literal('minimalist'),
-        personalInfo: personalInfoSchema,
-        summary: summarySchema,
-        experience: z.array(experienceSchema),
-        education: z.array(educationSchema),
-        projects: z.array(projectSchema),
-        skills: skillsSchema,
-    }),
-]);
+export const resumeSchema = z.object({
+  template: z.string(),
+  personalInfo: personalInfoSchema,
+  summary: summarySchema,
+  experience: z.array(experienceSchema),
+  education: z.array(educationSchema),
+  projects: z.array(projectSchema),
+  skills: skillsSchema,
+});
 
 export type ResumeSchema = z.infer<typeof resumeSchema>;

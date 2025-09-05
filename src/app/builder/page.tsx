@@ -2,26 +2,17 @@
 
 import AppHeader from '@/components/app-header';
 import ResumeBuilder from '@/components/resume-builder';
-import { useResumeStore } from '@/lib/store';
-import { useEffect, useState } from 'react';
+import { useDebouncedResumeStore } from '@/lib/store';
 
 export default function BuilderPage() {
-    const [isClient, setIsClient] = useState(false)
+  // We're using a debounced version of the store here to prevent excessive re-renders
+  // on every keystroke, which can be performance-intensive.
+  const { resume } = useDebouncedResumeStore();
 
-    useEffect(() => {
-        setIsClient(true)
-    }, [])
-
-    // This component now correctly handles client-side rendering to avoid hydration errors.
-    // The useResumeStore hook, which uses localStorage, will only be active on the client.
-    if (!isClient) {
-        return null; // or a loading spinner
-    }
-
-    return (
-        <div className="flex flex-col h-full">
-          <AppHeader />
-          <ResumeBuilder />
-        </div>
-      );
+  return (
+    <div className="flex flex-col h-full">
+      <AppHeader />
+      <ResumeBuilder />
+    </div>
+  );
 }
