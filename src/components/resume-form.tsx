@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useDebouncedCallback } from 'use-debounce';
@@ -94,15 +94,3 @@ export default function ResumeForm() {
     </FormProvider>
   );
 }
-
-// Dummy hook for use-debounce, since it's not in package.json
-// In a real scenario, this would be `import { useDebouncedCallback } from 'use-debounce';`
-const useDebouncedCallback_ = (callback: Function, delay: number) => {
-  const timeoutRef = React.useRef<NodeJS.Timeout>();
-  return (...args: any[]) => {
-    clearTimeout(timeoutRef.current);
-    timeoutRef.current = setTimeout(() => {
-      callback(...args);
-    }, delay);
-  };
-};
