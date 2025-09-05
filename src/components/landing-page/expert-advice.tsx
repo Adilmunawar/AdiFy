@@ -1,6 +1,4 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import AnimatedSection from "../animated-section";
 
@@ -21,24 +19,6 @@ const adviceItems = [
   },
 ];
 
-const videoItems = [
-    {
-        title: "How your info is shown matters",
-        image: "https://picsum.photos/seed/video1/400/225",
-        dataAiHint: "professional presentation"
-    },
-    {
-        title: "Perfecting your resume summary",
-        image: "https://picsum.photos/seed/video2/400/226",
-        dataAiHint: "person writing"
-    },
-    {
-        title: "What to include in your CV",
-        image: "https://picsum.photos/seed/video3/400/227",
-        dataAiHint: "hiring manager"
-    }
-]
-
 export default function ExpertAdvice() {
   return (
     <AnimatedSection>
@@ -50,7 +30,7 @@ export default function ExpertAdvice() {
             Boost your career with tips from our experts. Learn how to write a resume, pass an interview, and get your dream job.
         </p>
 
-        <div className="grid md:grid-cols-2 gap-8 mb-20">
+        <div className="grid md:grid-cols-2 gap-8">
           {adviceItems.map((item, index) => (
             <Card key={index} className="overflow-hidden group">
               <CardContent className="p-0">
@@ -70,32 +50,6 @@ export default function ExpertAdvice() {
               </CardContent>
             </Card>
           ))}
-        </div>
-
-        <div className="flex justify-between items-center mb-8">
-            <h3 className="text-2xl font-bold text-gray-800">Expert videos</h3>
-            <Button variant="outline">
-                Show all <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
-        </div>
-        <div className="grid md:grid-cols-3 gap-8">
-            {videoItems.map((item, index) => (
-                <Card key={index} className="overflow-hidden group">
-                    <CardContent className="p-0">
-                        <Image
-                            src={item.image}
-                            alt={item.title}
-                            width={400}
-                            height={225}
-                            className="w-full object-cover group-hover:scale-105 transition-transform duration-300"
-                            data-ai-hint={item.dataAiHint}
-                        />
-                        <div className="p-4">
-                            <h4 className="font-bold text-gray-800">{item.title}</h4>
-                        </div>
-                    </CardContent>
-                </Card>
-            ))}
         </div>
       </div>
     </AnimatedSection>
