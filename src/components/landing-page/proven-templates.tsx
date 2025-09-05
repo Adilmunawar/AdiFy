@@ -24,28 +24,28 @@ export default function ProvenTemplates() {
         </Link>
         <div className="mt-12 relative h-96">
           <Image
-            src="https://picsum.photos/400/550"
+            src="https://picsum.photos/seed/template1/400/550"
             alt="Resume template 1"
             width={400}
             height={550}
             className="rounded-lg shadow-2xl absolute left-1/2 -translate-x-[110%] top-0 transform-gpu rotate-[-6deg] transition-transform duration-300 hover:scale-105 hover:rotate-[-3deg]"
-            data-ai-hint="resume template"
+            data-ai-hint="professional resume"
           />
           <Image
-            src="https://picsum.photos/400/551"
+            src="https://picsum.photos/seed/template2/400/551"
             alt="Resume template 2"
             width={400}
             height={550}
             className="rounded-lg shadow-2xl absolute left-1/2 -translate-x-1/2 z-10 transition-transform duration-300 hover:scale-105"
-            data-ai-hint="resume template"
+            data-ai-hint="modern resume"
           />
           <Image
-            src="https://picsum.photos/400/552"
+            src="https://picsum.photos/seed/template3/400/552"
             alt="Resume template 3"
             width={400}
             height={550}
             className="rounded-lg shadow-2xl absolute left-1/2 translate-x-[10%] top-0 transform-gpu rotate-[6deg] transition-transform duration-300 hover:scale-105 hover:rotate-[3deg]"
-            data-ai-hint="resume template"
+            data-ai-hint="creative resume"
           />
         </div>
       </div>

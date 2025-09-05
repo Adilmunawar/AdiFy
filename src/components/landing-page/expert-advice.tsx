@@ -7,34 +7,34 @@ const adviceItems = [
   {
     title: "The science of a great resume",
     description: "Discover what makes a resume truly stand out to recruiters and hiring managers.",
-    image: "https://picsum.photos/400/250",
+    image: "https://picsum.photos/seed/advice1/400/250",
     category: "GUIDE",
-    dataAiHint: "abstract document"
+    dataAiHint: "resume analysis"
   },
   {
     title: "A comprehensive guide to job hunt",
     description: "Learn the strategies and tactics to navigate the modern job market successfully.",
-    image: "https://picsum.photos/400/251",
+    image: "https://picsum.photos/seed/advice2/400/251",
     category: "GUIDE",
-    dataAiHint: "briefcase document"
+    dataAiHint: "job search"
   },
 ];
 
 const videoItems = [
     {
         title: "How your info is shown matters",
-        image: "https://picsum.photos/400/225",
-        dataAiHint: "woman presenting"
+        image: "https://picsum.photos/seed/video1/400/225",
+        dataAiHint: "professional presentation"
     },
     {
         title: "Perfecting your resume summary",
-        image: "https://picsum.photos/400/226",
-        dataAiHint: "woman thinking"
+        image: "https://picsum.photos/seed/video2/400/226",
+        dataAiHint: "person writing"
     },
     {
         title: "What to include in your CV",
-        image: "https://picsum.photos/400/227",
-        dataAiHint: "woman writing"
+        image: "https://picsum.photos/seed/video3/400/227",
+        dataAiHint: "hiring manager"
     }
 ]
 

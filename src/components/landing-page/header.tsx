@@ -29,7 +29,6 @@ export default function Header() {
           ))}
         </nav>
         <div className="hidden md:flex items-center gap-4">
-            <Button variant="ghost">Log In</Button>
             <Link href="/builder">
                 <Button>Create My Resume</Button>
             </Link>
@@ -58,7 +57,6 @@ export default function Header() {
                   </Link>
                 ))}
                 <div className="border-t pt-6 flex flex-col gap-4">
-                    <Button variant="ghost" className="w-full">Log In</Button>
                     <Link href="/builder">
                         <Button className="w-full">Create My Resume</Button>
                     </Link>

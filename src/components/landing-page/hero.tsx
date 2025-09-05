@@ -27,12 +27,12 @@ export default function Hero() {
       </div>
       <div>
         <Image
-          src="https://picsum.photos/600/400"
+          src="https://picsum.photos/seed/resume-hero/600/400"
           alt="Resume builder interface"
           width={600}
           height={400}
           className="rounded-lg shadow-xl"
-          data-ai-hint="resume builder"
+          data-ai-hint="resume builder interface"
         />
       </div>
     </section>
