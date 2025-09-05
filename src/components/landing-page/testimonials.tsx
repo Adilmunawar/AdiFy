@@ -14,43 +14,43 @@ import Autoplay from "embla-carousel-autoplay"
 import React from "react";
 
 const testimonials = [
-  {
-    rating: 5,
-    name: "Sarah L.",
-    title: "Marketing Manager",
-    review: "The AI suggestions were a game-changer! I landed my dream job in just two weeks. I couldn't have done it without this builder."
-  },
-  {
-    rating: 5,
-    name: "David C.",
-    title: "Software Engineer",
-    review: "As a developer, I appreciate clean design and efficiency. This tool delivered both. The templates are modern and professional."
-  },
-  {
-    rating: 5,
-    name: "Jessica P.",
-    title: "Graphic Designer",
-    review: "I was able to create a visually stunning resume that perfectly reflects my creative skills. Highly recommended for designers!"
-  },
-  {
-    rating: 5,
-    name: "Michael B.",
-    title: "Project Manager",
-    review: "The best resume builder I've used. The interface is intuitive and the final product is incredibly polished. The AI features saved me hours."
-  },
-  {
-    rating: 5,
-    name: "Emily R.",
-    title: "Recent Graduate",
-    review: "Perfect for a recent grad like me. The templates gave me a huge head start and the content suggestions helped me sound more professional."
-  },
-  {
-    rating: 5,
-    name: "Daniel K.",
-    title: "UX Researcher",
-    review: "I've tried many resume builders, and this is by far the most user-friendly and effective. The ability to tailor my resume for each job is fantastic."
-  }
-];
+    {
+      rating: 5,
+      name: "Sarah L.",
+      title: "Marketing Manager",
+      review: "The AI suggestions were a game-changer! I landed my dream job in just two weeks. I couldn't have done it without this builder."
+    },
+    {
+      rating: 5,
+      name: "David C.",
+      title: "Software Engineer",
+      review: "As a developer, I appreciate clean design and efficiency. This tool delivered both. The templates are modern and professional."
+    },
+    {
+      rating: 5,
+      name: "Jessica P.",
+      title: "Graphic Designer",
+      review: "I was able to create a visually stunning resume that perfectly reflects my creative skills. Highly recommended for designers!"
+    },
+    {
+      rating: 5,
+      name: "Michael B.",
+      title: "Project Manager",
+      review: "The best resume builder I've used. The interface is intuitive and the final product is incredibly polished. The AI features saved me hours."
+    },
+    {
+      rating: 5,
+      name: "Emily R.",
+      title: "Recent Graduate",
+      review: "Perfect for a recent grad like me. The templates gave me a huge head start and the content suggestions helped me sound more professional."
+    },
+    {
+      rating: 5,
+      name: "Daniel K.",
+      title: "UX Researcher",
+      review: "I've tried many resume builders, and this is by far the most user-friendly and effective. The ability to tailor my resume for each job is fantastic."
+    }
+  ];
 
 export default function Testimonials() {
   const plugin = React.useRef(
