@@ -1,90 +1,88 @@
 'use client';
 
-import { useFormContext, useFieldArray } from 'react-hook-form';
+import { useResumeStore } from '@/lib/store';
 import { PlusCircle, Trash2 } from 'lucide-react';
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { Label } from '@/components/ui/label';
 
 export default function EducationForm() {
-  const form = useFormContext();
-  const { fields, append, remove } = useFieldArray({
-    control: form.control,
-    name: 'education',
-  });
+  const { resume, updateResume } = useResumeStore();
+  const { education } = resume;
+
+  const handleChange = (index: number, e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    const newEducation = [...education];
+    newEducation[index] = { ...newEducation[index], [name]: value };
+    updateResume({ ...resume, education: newEducation });
+  };
+
+  const addEducation = () => {
+    const newEducation = [...education, { id: crypto.randomUUID(), degree: '', school: '', location: '', graduationDate: '' }];
+    updateResume({ ...resume, education: newEducation });
+  };
+
+  const removeEducation = (index: number) => {
+    const newEducation = education.filter((_, i) => i !== index);
+    updateResume({ ...resume, education: newEducation });
+  };
 
   return (
     <div className="space-y-4 pt-4">
-      {fields.map((item, index) => (
+      {education.map((item, index) => (
         <Card key={item.id} className="relative">
           <Button
             type="button"
             variant="ghost"
             size="icon"
             className="absolute top-2 right-2 text-muted-foreground hover:text-destructive"
-            onClick={() => remove(index)}
+            onClick={() => removeEducation(index)}
           >
             <Trash2 className="h-4 w-4" />
           </Button>
           <CardContent className="pt-6 space-y-4">
-            <FormField
-              control={form.control}
-              name={`education.${index}.degree`}
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Degree / Certificate</FormLabel>
-                  <FormControl>
-                    <Input placeholder="M.S. in Computer Science" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-             <FormField
-              control={form.control}
-              name={`education.${index}.school`}
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>School / University</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Stanford University" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+            <div>
+              <Label htmlFor={`education.${index}.degree`}>Degree / Certificate</Label>
+              <Input
+                id={`education.${index}.degree`}
+                name="degree"
+                placeholder="M.S. in Computer Science"
+                value={item.degree}
+                onChange={(e) => handleChange(index, e)}
+              />
+            </div>
+            <div>
+              <Label htmlFor={`education.${index}.school`}>School / University</Label>
+              <Input
+                id={`education.${index}.school`}
+                name="school"
+                placeholder="Stanford University"
+                value={item.school}
+                onChange={(e) => handleChange(index, e)}
+              />
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <FormField
-                control={form.control}
-                name={`education.${index}.location`}
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Location</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Stanford, CA" {...field} />
-                    </FormControl>
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name={`education.${index}.graduationDate`}
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Graduation Date</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Jun 2019" {...field} />
-                    </FormControl>
-                  </FormItem>
-                )}
-              />
+              <div>
+                <Label htmlFor={`education.${index}.location`}>Location</Label>
+                <Input
+                  id={`education.${index}.location`}
+                  name="location"
+                  placeholder="Stanford, CA"
+                  value={item.location}
+                  onChange={(e) => handleChange(index, e)}
+                />
+              </div>
+              <div>
+                <Label htmlFor={`education.${index}.graduationDate`}>Graduation Date</Label>
+                <Input
+                  id={`education.${index}.graduationDate`}
+                  name="graduationDate"
+                  placeholder="Jun 2019"
+                  value={item.graduationDate}
+                  onChange={(e) => handleChange(index, e)}
+                />
+              </div>
             </div>
           </CardContent>
         </Card>
@@ -93,7 +91,7 @@ export default function EducationForm() {
       <Button
         type="button"
         variant="outline"
-        onClick={() => append({ id: crypto.randomUUID(), degree: '', school: '', location: '', graduationDate: '' })}
+        onClick={addEducation}
       >
         <PlusCircle className="mr-2 h-4 w-4" /> Add Education
       </Button>

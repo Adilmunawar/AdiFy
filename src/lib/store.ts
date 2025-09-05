@@ -2,6 +2,7 @@ import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import type { ResumeSchema } from './schema';
 import { initialData } from './initial-data';
+import { useDebouncedCallback } from 'use-debounce';
 
 interface ResumeState {
   resume: ResumeSchema;
@@ -28,3 +29,10 @@ export const useResumeStore = create<ResumeState>()(
     }
   )
 );
+
+export const useDebouncedResumeStore = () => {
+    const store = useResumeStore();
+    const debouncedUpdateResume = useDebouncedCallback(store.updateResume, 300);
+  
+    return { ...store, updateResume: debouncedUpdateResume };
+  };

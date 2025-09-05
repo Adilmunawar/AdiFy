@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { useForm, UseFormReturn } from 'react-hook-form';
 import { Wand2, LoaderCircle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { refineContent, RefineContentInput } from '@/ai/flows/ai-content-refinement';
@@ -17,36 +16,32 @@ import {
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
 
 type AiRefineButtonProps = {
-  form: UseFormReturn<any>;
   fieldName: string;
   fieldValue: string;
+  setValue: (value: string) => void;
   title?: string;
 };
 
-type RefineForm = {
-  targetedCompany: string;
-  targetedRole: string;
-};
-
-export default function AiRefineButton({ form, fieldName, fieldValue, title = "Refine with AI" }: AiRefineButtonProps) {
+export default function AiRefineButton({ fieldName, fieldValue, setValue, title = "Refine with AI" }: AiRefineButtonProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [refinedContent, setRefinedContent] = useState('');
+  const [targetCompany, setTargetCompany] = useState('');
+  const [targetRole, setTargetRole] = useState('');
+
   const { toast } = useToast();
 
-  const { register, handleSubmit } = useForm<RefineForm>();
-
-  const handleRefine = async (data: RefineForm) => {
+  const handleRefine = async (e: React.FormEvent) => {
+    e.preventDefault();
     setIsLoading(true);
     setRefinedContent('');
     try {
       const input: RefineContentInput = {
         resumeContent: fieldValue,
-        targetedCompany: data.targetedCompany,
-        targetedRole: data.targetedRole,
+        targetedCompany: targetCompany,
+        targetedRole: targetRole,
       };
       const result = await refineContent(input);
       setRefinedContent(result.refinedContent);
@@ -63,7 +58,7 @@ export default function AiRefineButton({ form, fieldName, fieldValue, title = "R
   };
 
   const handleAccept = () => {
-    form.setValue(fieldName, refinedContent, { shouldDirty: true, shouldValidate: true });
+    setValue(refinedContent);
     setIsOpen(false);
     setRefinedContent('');
   };
@@ -94,15 +89,15 @@ export default function AiRefineButton({ form, fieldName, fieldValue, title = "R
               Provide a target company and role to tailor your content.
             </DialogDescription>
           </DialogHeader>
-          <form onSubmit={handleSubmit(handleRefine)} className="space-y-4">
+          <form onSubmit={handleRefine} className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="targetedCompany">Target Company</Label>
-                <Input id="targetedCompany" {...register('targetedCompany', { required: true })} />
+                <Input id="targetedCompany" value={targetCompany} onChange={(e) => setTargetCompany(e.target.value)} required />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="targetedRole">Target Role</Label>
-                <Input id="targetedRole" {...register('targetedRole', { required: true })} />
+                <Input id="targetedRole" value={targetRole} onChange={(e) => setTargetRole(e.target.value)} required />
               </div>
             </div>
             <Button type="submit" disabled={isLoading} className="w-full">

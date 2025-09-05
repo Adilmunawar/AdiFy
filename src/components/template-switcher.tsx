@@ -66,7 +66,7 @@ export default function TemplateSwitcher({ isOpen, onOpenChange }: TemplateSwitc
                     <CardContent className="p-0">
                         <div className="template-thumbnail">
                             <div className="w-[8.5in] h-[11in] bg-white">
-                                <TemplateComponent resume={resume as ResumeSchema} />
+                                <TemplateComponent resume={resume} />
                             </div>
                         </div>
                     </CardContent>

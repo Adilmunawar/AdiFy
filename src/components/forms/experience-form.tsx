@@ -1,121 +1,130 @@
 'use client';
 
-import { useFormContext, useFieldArray } from 'react-hook-form';
+import { useResumeStore } from '@/lib/store';
 import { PlusCircle, Trash2 } from 'lucide-react';
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import AiRefineButton from '../ai-refine-button';
+import type { experienceSchema } from '@/lib/schema';
+import type { z } from 'zod';
+
+type Experience = z.infer<typeof experienceSchema>;
 
 export default function ExperienceForm() {
-  const form = useFormContext();
-  const { fields, append, remove } = useFieldArray({
-    control: form.control,
-    name: 'experience',
-  });
+  const { resume, updateResume } = useResumeStore();
+  const { experience } = resume;
+
+  const handleChange = (index: number, e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    const newExperience = [...experience];
+    newExperience[index] = { ...newExperience[index], [name]: value };
+    updateResume({ ...resume, experience: newExperience });
+  };
+  
+  const setValue = (index: number, value: string) => {
+    const newExperience = [...experience];
+    newExperience[index] = { ...newExperience[index], description: value };
+    updateResume({ ...resume, experience: newExperience });
+  }
+
+  const addExperience = () => {
+    const newExperience = [...experience, { id: crypto.randomUUID(), jobTitle: '', company: '', location: '', startDate: '', endDate: '', description: '' }];
+    updateResume({ ...resume, experience: newExperience });
+  };
+
+  const removeExperience = (index: number) => {
+    const newExperience = experience.filter((_, i) => i !== index);
+    updateResume({ ...resume, experience: newExperience });
+  };
 
   return (
     <div className="space-y-4 pt-4">
-      {fields.map((item, index) => (
+      {experience.map((item, index) => (
         <Card key={item.id} className="relative">
           <Button
             type="button"
             variant="ghost"
             size="icon"
             className="absolute top-2 right-2 text-muted-foreground hover:text-destructive"
-            onClick={() => remove(index)}
+            onClick={() => removeExperience(index)}
           >
             <Trash2 className="h-4 w-4" />
           </Button>
           <CardContent className="pt-6 space-y-4">
-            <FormField
-              control={form.control}
-              name={`experience.${index}.jobTitle`}
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Job Title</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Senior Software Engineer" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-             <FormField
-              control={form.control}
-              name={`experience.${index}.company`}
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Company</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Tech Solutions Inc." {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <FormField
-                control={form.control}
-                name={`experience.${index}.location`}
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Location</FormLabel>
-                    <FormControl>
-                      <Input placeholder="San Francisco, CA" {...field} />
-                    </FormControl>
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name={`experience.${index}.startDate`}
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Start Date</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Jan 2020" {...field} />
-                    </FormControl>
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name={`experience.${index}.endDate`}
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>End Date</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Present" {...field} />
-                    </FormControl>
-                  </FormItem>
-                )}
+            <div>
+              <Label htmlFor={`experience.${index}.jobTitle`}>Job Title</Label>
+              <Input
+                id={`experience.${index}.jobTitle`}
+                name="jobTitle"
+                placeholder="Senior Software Engineer"
+                value={item.jobTitle}
+                onChange={(e) => handleChange(index, e)}
               />
             </div>
-             <FormField
-                control={form.control}
-                name={`experience.${index}.description`}
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Description</FormLabel>
-                    <FormControl>
-                      <div className="relative">
-                        <Textarea placeholder="Describe your responsibilities and achievements..." className="min-h-[120px] pr-10" {...field} />
-                        <AiRefineButton form={form} fieldName={`experience.${index}.description`} fieldValue={field.value} title="Refine Job Description"/>
-                      </div>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
+             <div>
+              <Label htmlFor={`experience.${index}.company`}>Company</Label>
+              <Input
+                id={`experience.${index}.company`}
+                name="company"
+                placeholder="Tech Solutions Inc."
+                value={item.company}
+                onChange={(e) => handleChange(index, e)}
               />
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div>
+                <Label htmlFor={`experience.${index}.location`}>Location</Label>
+                <Input
+                  id={`experience.${index}.location`}
+                  name="location"
+                  placeholder="San Francisco, CA"
+                  value={item.location}
+                  onChange={(e) => handleChange(index, e)}
+                />
+              </div>
+              <div>
+                <Label htmlFor={`experience.${index}.startDate`}>Start Date</Label>
+                <Input
+                  id={`experience.${index}.startDate`}
+                  name="startDate"
+                  placeholder="Jan 2020"
+                  value={item.startDate}
+                  onChange={(e) => handleChange(index, e)}
+                />
+              </div>
+              <div>
+                <Label htmlFor={`experience.${index}.endDate`}>End Date</Label>
+                <Input
+                  id={`experience.${index}.endDate`}
+                  name="endDate"
+                  placeholder="Present"
+                  value={item.endDate}
+                  onChange={(e) => handleChange(index, e)}
+                />
+              </div>
+            </div>
+            <div>
+              <Label htmlFor={`experience.${index}.description`}>Description</Label>
+              <div className="relative">
+                <Textarea
+                  id={`experience.${index}.description`}
+                  name="description"
+                  placeholder="Describe your responsibilities and achievements..."
+                  className="min-h-[120px] pr-10"
+                  value={item.description}
+                  onChange={(e) => handleChange(index, e)}
+                />
+                <AiRefineButton
+                  fieldName={`experience.${index}.description`}
+                  fieldValue={item.description}
+                  setValue={(value) => setValue(index, value)}
+                  title="Refine Job Description"
+                />
+              </div>
+            </div>
           </CardContent>
         </Card>
       ))}
@@ -123,7 +132,7 @@ export default function ExperienceForm() {
       <Button
         type="button"
         variant="outline"
-        onClick={() => append({ id: crypto.randomUUID(), jobTitle: '', company: '', location: '', startDate: '', endDate: '', description: '' })}
+        onClick={addExperience}
       >
         <PlusCircle className="mr-2 h-4 w-4" /> Add Experience
       </Button>

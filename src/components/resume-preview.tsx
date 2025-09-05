@@ -15,6 +15,7 @@ export default function ResumePreview() {
   const parseResult = resumeSchema.safeParse(resume);
 
   const renderTemplate = () => {
+    // Only render if the resume data is valid
     if (!parseResult.success) {
       return (
           <div className={`w-full max-w-[8.5in] aspect-[8.5/11] mx-auto flex items-center justify-center`}>

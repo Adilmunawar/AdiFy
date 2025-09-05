@@ -1,11 +1,6 @@
 'use client';
 
-import React, { useEffect } from 'react';
-import { useForm, FormProvider } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useDebouncedCallback } from 'use-debounce';
-
-import { resumeSchema, type ResumeSchema } from '@/lib/schema';
+import React from 'react';
 import { useResumeStore } from '@/lib/store';
 import {
   Accordion,
@@ -24,33 +19,12 @@ import { ScrollArea } from './ui/scroll-area';
 import TemplateSwitcher from './template-switcher';
 
 export default function ResumeForm() {
-  const { resume, updateResume, isTemplateSwitcherOpen, setTemplateSwitcherOpen } = useResumeStore();
-
-  const methods = useForm<ResumeSchema>({
-    resolver: zodResolver(resumeSchema),
-    defaultValues: resume,
-  });
-
-  const debouncedUpdate = useDebouncedCallback((data: ResumeSchema) => {
-    updateResume(data);
-  }, 500);
-
-  useEffect(() => {
-    const subscription = methods.watch((value) => {
-      debouncedUpdate(value as ResumeSchema);
-    });
-    return () => subscription.unsubscribe();
-  }, [methods, debouncedUpdate]);
-  
-  // Sync form with store if it changes from outside (e.g. reset, template change)
-  useEffect(() => {
-    methods.reset(resume);
-  }, [resume, methods]);
+    const { isTemplateSwitcherOpen, setTemplateSwitcherOpen } = useResumeStore();
 
   return (
-    <FormProvider {...methods}>
+    <>
       <ScrollArea className="h-full no-print">
-        <form className="p-4 md:p-8 space-y-8">
+        <div className="p-4 md:p-8 space-y-8">
           <Accordion type="multiple" defaultValue={['personal-info']} className="w-full">
             <AccordionItem value="personal-info">
               <AccordionTrigger className="text-xl font-bold">Personal Information</AccordionTrigger>
@@ -94,9 +68,9 @@ export default function ResumeForm() {
               </AccordionContent>
             </AccordionItem>
           </Accordion>
-        </form>
+        </div>
       </ScrollArea>
       <TemplateSwitcher isOpen={isTemplateSwitcherOpen} onOpenChange={setTemplateSwitcherOpen} />
-    </FormProvider>
+    </>
   );
 }
