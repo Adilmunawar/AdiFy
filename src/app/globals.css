@@ -4,25 +4,25 @@
 
 @layer base {
   :root {
-    --background: 208 100% 97%;
+    --background: 0 0% 100%;
     --foreground: 224 71.4% 4.1%;
-    --card: 208 100% 97%;
+    --card: 0 0% 100%;
     --card-foreground: 224 71.4% 4.1%;
-    --popover: 208 100% 97%;
+    --popover: 0 0% 100%;
     --popover-foreground: 224 71.4% 4.1%;
-    --primary: 199 64% 75%;
-    --primary-foreground: 224 71.4% 4.1%;
+    --primary: 206 90% 54%;
+    --primary-foreground: 210 20% 98%;
     --secondary: 220 14.3% 95.9%;
     --secondary-foreground: 224 71.4% 4.1%;
     --muted: 220 14.3% 95.9%;
     --muted-foreground: 220 8.9% 46.1%;
-    --accent: 160 50% 61%;
+    --accent: 220 14.3% 95.9%;
     --accent-foreground: 224 71.4% 4.1%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
     --border: 220 13% 91%;
     --input: 220 13% 91%;
-    --ring: 199 64% 75%;
+    --ring: 206 90% 54%;
     --chart-1: 12 76% 61%;
     --chart-2: 173 58% 39%;
     --chart-3: 197 37% 24%;
@@ -37,19 +37,19 @@
     --card-foreground: 210 20% 98%;
     --popover: 224 71.4% 4.1%;
     --popover-foreground: 210 20% 98%;
-    --primary: 199 64% 75%;
-    --primary-foreground: 224 71.4% 4.1%;
+    --primary: 206 90% 54%;
+    --primary-foreground: 210 20% 98%;
     --secondary: 215 27.9% 16.9%;
     --secondary-foreground: 210 20% 98%;
     --muted: 215 27.9% 16.9%;
     --muted-foreground: 217.9 10.6% 64.9%;
-    --accent: 160 50% 61%;
+    --accent: 215 27.9% 16.9%;
     --accent-foreground: 210 20% 98%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
     --border: 215 27.9% 16.9%;
     --input: 215 27.9% 16.9%;
-    --ring: 199 64% 75%;
+    --ring: 206 90% 54%;
     --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
@@ -84,7 +84,7 @@
     top: 0;
     width: 100%;
     height: 100%;
-    transform: scale(1) !important;
+    transform: scale(0.75) !important;
     transform-origin: top left;
   }
   #resume-preview {
@@ -105,4 +105,8 @@
     overflow: hidden;
     border-radius: calc(var(--radius) - 2px);
     border: 1px solid hsl(var(--border));
+}
+
+#resume-container.print-container {
+  transform: scale(0.75);
 }
