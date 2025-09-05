@@ -1,6 +1,8 @@
 'use client';
 
+import { useFormContext } from 'react-hook-form';
 import { useResumeStore } from '@/lib/store';
+import type { ResumeSchema } from '@/lib/schema';
 import {
   Dialog,
   DialogContent,
@@ -33,9 +35,12 @@ const templates = [
 ];
 
 export default function TemplateSwitcher({ isOpen, onOpenChange }: TemplateSwitcherProps) {
-  const { resume, setTemplate } = useResumeStore();
+  const { setTemplate } = useResumeStore();
+  const form = useFormContext<ResumeSchema>();
+  const currentResume = form.watch();
 
   const handleSelectTemplate = (templateId: string) => {
+    form.setValue('template', templateId);
     setTemplate(templateId);
     onOpenChange(false);
   };
@@ -46,7 +51,7 @@ export default function TemplateSwitcher({ isOpen, onOpenChange }: TemplateSwitc
         <DialogHeader>
           <DialogTitle>Choose a Template</DialogTitle>
           <DialogDescription>
-            Select a template to instantly update your resume's appearance.
+            Select a template to instantly update your resume's appearance. Your current data is shown in the previews.
           </DialogDescription>
         </DialogHeader>
         <ScrollArea className="h-full">
@@ -54,18 +59,18 @@ export default function TemplateSwitcher({ isOpen, onOpenChange }: TemplateSwitc
             {templates.map((template) => {
                 const TemplateComponent = template.component;
                 return (
-                <div key={template.id} className="space-y-2 group">
+                <div key={template.id} className="space-y-2 group flex flex-col items-center">
                     <Card 
                         className={cn(
                             "cursor-pointer hover:border-primary transition-all duration-200 border-2 border-transparent group-hover:scale-105",
-                            resume.template === template.id && "border-primary ring-2 ring-primary"
+                            currentResume.template === template.id && "border-primary ring-2 ring-primary"
                         )}
                         onClick={() => handleSelectTemplate(template.id)}
                     >
                     <CardContent className="p-0">
                         <div className="template-thumbnail">
                             <div className="w-[8.5in] h-[11in] bg-white">
-                                <TemplateComponent resume={resume} />
+                                <TemplateComponent resume={currentResume} />
                             </div>
                         </div>
                     </CardContent>

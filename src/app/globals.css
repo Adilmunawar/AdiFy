@@ -84,16 +84,25 @@
     top: 0;
     width: 100%;
     height: 100%;
-    transform: scale(1);
+    transform: scale(1) !important;
     transform-origin: top left;
+  }
+  #resume-preview {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+  }
+  #resume-preview .shadow-lg {
+    box-shadow: none;
   }
 }
 
 .template-thumbnail {
-    transform: scale(0.2);
+    transform: scale(0.25);
     transform-origin: top left;
-    height: 279px; /* 11in * 96px/in * 0.2 */
-    width: 216px;  /* 8.5in * 96px/in * 0.2 */
+    height: 279px; /* 11in * 96px/in * 0.25 */
+    width: 216px;  /* 8.5in * 96px/in * 0.25 */
     overflow: hidden;
     border-radius: calc(var(--radius) - 2px);
+    border: 1px solid hsl(var(--border));
 }

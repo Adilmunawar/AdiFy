@@ -9,11 +9,11 @@ export function ModernTemplate({ resume }: { resume: ResumeSchema }) {
   const { personalInfo, summary, experience, education, projects, skills } = resume;
 
   return (
-    <div className="flex h-full text-sm bg-background">
-        <div className="w-1/3 bg-gray-800 text-white p-8 flex flex-col">
+    <div className="flex h-full text-xs bg-background">
+        <div className="w-1/3 bg-gray-800 text-white p-6 flex flex-col">
             <div className="flex flex-col items-center text-center">
               {personalInfo.photoUrl && (
-                  <div className="relative w-36 h-36 mb-6">
+                  <div className="relative w-32 h-32 mb-4">
                       <Image
                           src={personalInfo.photoUrl}
                           alt={personalInfo.name}
@@ -23,94 +23,91 @@ export function ModernTemplate({ resume }: { resume: ResumeSchema }) {
                       />
                   </div>
               )}
-              <header className="text-center mb-8">
-                  <h1 className="text-3xl font-bold tracking-tight text-white">{personalInfo.name}</h1>
+              <header className="mb-6">
+                  <h1 className="text-2xl font-bold tracking-tight text-white">{personalInfo.name}</h1>
               </header>
             </div>
             
-            <div className="space-y-8 w-full mt-auto">
-                 {/* Contact Info */}
+            <div className="space-y-6 w-full mt-auto">
                 <section>
-                    <h2 className="text-base font-semibold tracking-widest uppercase text-gray-300">Contact</h2>
-                    <Separator className="bg-gray-600 my-2" />
-                    <div className="space-y-2 text-xs text-gray-300">
-                        <div className="flex items-center gap-3">
-                            <Mail className="w-4 h-4 text-primary"/>
-                            <span>{personalInfo.email}</span>
-                        </div>
-                        <div className="flex items-center gap-3">
-                            <Phone className="w-4 h-4 text-primary"/>
+                    <h2 className="text-xs font-semibold tracking-widest uppercase text-gray-300">Contact</h2>
+                    <Separator className="bg-gray-600 my-1.5" />
+                    <div className="space-y-2 text-[11px] text-gray-300">
+                        {personalInfo.email && <div className="flex items-center gap-2">
+                            <Mail className="w-3 h-3 text-primary shrink-0"/>
+                            <span className="break-all">{personalInfo.email}</span>
+                        </div>}
+                        {personalInfo.phone && <div className="flex items-center gap-2">
+                            <Phone className="w-3 h-3 text-primary shrink-0"/>
                             <span>{personalInfo.phone}</span>
-                        </div>
-                        <div className="flex items-center gap-3">
-                            <MapPin className="w-4 h-4 text-primary"/>
+                        </div>}
+                        {personalInfo.address && <div className="flex items-center gap-2">
+                            <MapPin className="w-3 h-3 text-primary shrink-0"/>
                             <span>{personalInfo.address}</span>
-                        </div>
+                        </div>}
                     </div>
                 </section>
 
-                 {/* Education */}
-                <section>
-                    <h2 className="text-base font-semibold tracking-widest uppercase text-gray-300">Education</h2>
-                    <Separator className="bg-gray-600 my-2" />
-                    <div className="space-y-4">
+                {education.length > 0 && <section>
+                    <h2 className="text-xs font-semibold tracking-widest uppercase text-gray-300">Education</h2>
+                    <Separator className="bg-gray-600 my-1.5" />
+                    <div className="space-y-3">
                         {education.map((edu) => (
                         <div key={edu.id}>
                             <h3 className="font-semibold text-sm text-white">{edu.school}</h3>
-                            <p className="text-xs text-gray-300">{edu.degree}</p>
-                            <p className="text-xs text-gray-400">{edu.graduationDate}</p>
+                            <p className="text-[11px] text-gray-300">{edu.degree}</p>
+                            <p className="text-[10px] text-gray-400">{edu.graduationDate}</p>
                         </div>
                         ))}
                     </div>
-                </section>
+                </section>}
 
-                {/* Skills */}
-                <section>
-                    <h2 className="text-base font-semibold tracking-widest uppercase text-gray-300">Skills</h2>
-                    <Separator className="bg-gray-600 my-2" />
-                    <div className="flex flex-wrap gap-2 justify-start">
+                {skills.content && <section>
+                    <h2 className="text-xs font-semibold tracking-widest uppercase text-gray-300">Skills</h2>
+                    <Separator className="bg-gray-600 my-1.5" />
+                    <div className="flex flex-wrap gap-1.5">
                         {skills.content.split(',').map(skill => skill.trim() && (
-                          <span key={skill} className="bg-gray-700 text-gray-200 text-xs px-2.5 py-1 rounded">{skill.trim()}</span>
+                          <span key={skill} className="bg-gray-700 text-gray-200 text-[10px] px-2 py-0.5 rounded">{skill.trim()}</span>
                         ))}
                     </div>
-                </section>
+                </section>}
             </div>
         </div>
         <div className="w-2/3 p-8 flex flex-col bg-white overflow-y-auto">
-            <section className="mb-8">
-                <h2 className="text-xl font-bold text-gray-700 tracking-wide uppercase border-b-2 border-gray-200 pb-2 mb-4">Professional Summary</h2>
-                <p className="text-sm text-gray-700 leading-relaxed">{summary.content}</p>
-            </section>
+            {summary.content && <section className="mb-6">
+                <h2 className="text-lg font-bold text-gray-700 tracking-wide uppercase border-b-2 border-gray-200 pb-1.5 mb-3">Professional Summary</h2>
+                <p className="text-xs text-gray-700 leading-relaxed">{summary.content}</p>
+            </section>}
             
-            <section className="mb-8">
-                <h2 className="text-xl font-bold text-gray-700 tracking-wide uppercase border-b-2 border-gray-200 pb-2 mb-4">Work Experience</h2>
-                <div className="space-y-6">
+            {experience.length > 0 && <section className="mb-6">
+                <h2 className="text-lg font-bold text-gray-700 tracking-wide uppercase border-b-2 border-gray-200 pb-1.5 mb-3">Work Experience</h2>
+                <div className="space-y-5">
                     {experience.map((exp) => (
                     <div key={exp.id}>
                         <div className="flex justify-between items-baseline">
-                          <h3 className="font-semibold text-base text-gray-800">{exp.jobTitle} at {exp.company}</h3>
-                          <span className="text-xs text-gray-500 font-mono">{exp.startDate} - {exp.endDate}</span>
+                          <h3 className="font-semibold text-sm text-gray-800">{exp.jobTitle} at {exp.company}</h3>
+                          <span className="text-[10px] text-gray-500 font-mono">{exp.startDate} - {exp.endDate}</span>
                         </div>
-                        <p className="text-sm text-gray-500 mb-2">{exp.location}</p>
-                        <ul className="list-disc list-outside ml-4 text-sm space-y-1 text-gray-700">
+                        <p className="text-xs text-gray-500 mb-1.5">{exp.location}</p>
+                        <ul className="list-disc list-outside ml-3.5 text-xs space-y-1 text-gray-700">
                           {exp.description.split('\n').map((line, i) => line.trim() && <li key={i}>{line.replace(/^- /, '')}</li>)}
                         </ul>
                     </div>
                     ))}
                 </div>
-            </section>
+            </section>}
 
-            <section>
-                <h2 className="text-xl font-bold text-gray-700 tracking-wide uppercase border-b-2 border-gray-200 pb-2 mb-4">Projects</h2>
-                <div className="space-y-5">
+            {projects.length > 0 && <section>
+                <h2 className="text-lg font-bold text-gray-700 tracking-wide uppercase border-b-2 border-gray-200 pb-1.5 mb-3">Projects</h2>
+                <div className="space-y-4">
                     {projects.map((proj) => (
                     <div key={proj.id}>
-                        <h3 className="font-semibold text-base text-gray-800">{proj.name}</h3>
-                        <p className="text-sm text-gray-700">{proj.description}</p>
+                        <h3 className="font-semibold text-sm text-gray-800">{proj.name}</h3>
+                        <p className="text-xs text-gray-700">{proj.description}</p>
                     </div>
                     ))}
                 </div>
-            </section>
+            </section>}
         </div>
     </div>
   )
