@@ -1,7 +1,10 @@
+'use client';
+
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
+import { useState } from "react";
 
 const navLinks = [
   { name: "Resume Templates", href: "#" },
@@ -11,6 +14,7 @@ const navLinks = [
 ];
 
 export default function Header() {
+    const [isSheetOpen, setIsSheetOpen] = useState(false);
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container h-14 flex items-center justify-between">
@@ -36,7 +40,7 @@ export default function Header() {
 
         {/* Mobile Menu */}
         <div className="md:hidden">
-          <Sheet>
+          <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon">
                 <Menu className="h-6 w-6" />
@@ -44,13 +48,14 @@ export default function Header() {
             </SheetTrigger>
             <SheetContent side="right">
               <div className="flex flex-col gap-6 p-6">
-                <Link href="/" className="font-bold text-2xl text-primary mb-4">
+                <Link href="/" className="font-bold text-2xl text-primary mb-4" onClick={() => setIsSheetOpen(false)}>
                   Adify
                 </Link>
                 {navLinks.map((link) => (
                   <Link
                     key={link.name}
                     href={link.href}
+                    onClick={() => setIsSheetOpen(false)}
                     className="text-lg text-gray-700 hover:text-gray-900"
                   >
                     {link.name}
@@ -58,7 +63,7 @@ export default function Header() {
                 ))}
                 <div className="border-t pt-6 flex flex-col gap-4">
                     <Link href="/builder">
-                        <Button className="w-full">Create My Resume</Button>
+                        <Button className="w-full" onClick={() => setIsSheetOpen(false)}>Create My Resume</Button>
                     </Link>
                 </div>
               </div>

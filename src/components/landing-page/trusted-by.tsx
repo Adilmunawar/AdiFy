@@ -1,12 +1,12 @@
-import { Building, GitCommit } from "lucide-react";
+import React from 'react';
 
 const logos = [
-    { name: "Google", icon: <GitCommit className="w-10 h-10"/> },
-    { name: "Apple", icon: <GitCommit className="w-10 h-10"/> },
-    { name: "Microsoft", icon: <GitCommit className="w-10 h-10"/> },
-    { name: "Amazon", icon: <GitCommit className="w-10 h-10"/> },
-    { name: "Netflix", icon: <GitCommit className="w-10 h-10"/> },
-    { name: "Facebook", icon: <GitCommit className="w-10 h-10"/> },
+    { name: "Google" },
+    { name: "Apple" },
+    { name: "Microsoft" },
+    { name: "Amazon" },
+    { name: "Netflix" },
+    { name: "Facebook" },
 ]
 
 export default function TrustedBy() {
@@ -18,9 +18,8 @@ export default function TrustedBy() {
             </p>
             <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-8 items-center">
                 {logos.map((logo, index) => (
-                    <div key={index} className="flex justify-center items-center text-gray-400 hover:text-gray-600 transition-colors">
-                        {logo.icon}
-                        <span className="text-lg font-semibold ml-2">{logo.name}</span>
+                    <div key={index} className="flex justify-center">
+                        <span className="text-2xl font-semibold text-gray-400 hover:text-gray-600 transition-colors">{logo.name}</span>
                     </div>
                 ))}
             </div>
