@@ -63,7 +63,7 @@ export function ClassicTemplate({ resume }: { resume: ResumeSchema }) {
                       <p className="text-xs text-gray-500">{exp.location}</p>
                    </div>
                   <ul className="mt-1 list-disc list-inside text-xs space-y-1 text-gray-700">
-                    {exp.description.split('\n').map((line, i) => line.trim() && <li key={i}>{line.replace(/^- /, '')}</li>)}
+                    {exp.description.split('\n').filter(line => line.trim()).map((line, i) => <li key={i}>{line.replace(/^- /, '')}</li>)}
                   </ul>
                 </div>
               ))}

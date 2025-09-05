@@ -90,7 +90,7 @@ export function ExecutiveTemplate({ resume }: { resume: ResumeSchema }) {
                       </div>
                       <p className="font-semibold text-gray-600 text-sm mb-1.5">{exp.company} | {exp.location}</p>
                       <ul className="list-disc list-outside ml-4 text-xs space-y-1.5 text-gray-700">
-                        {exp.description.split('\n').map((line, i) => line.trim() && <li key={i}>{line.replace(/^- /, '')}</li>)}
+                        {exp.description.split('\n').filter(line => line.trim()).map((line, i) => <li key={i}>{line.replace(/^- /, '')}</li>)}
                       </ul>
                   </div>
                   ))}

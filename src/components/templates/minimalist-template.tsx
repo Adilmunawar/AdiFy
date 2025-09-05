@@ -9,7 +9,7 @@ export function MinimalistTemplate({ resume }: { resume: ResumeSchema }) {
   return (
     <div className="flex flex-col h-full p-10 bg-white text-gray-700 font-['Inter',sans-serif] text-xs">
         <header className="text-center mb-8">
-          <h1 className="text-3xl font-extrabold tracking-tighter">{personalInfo.name}</h1>
+          <h1 className="text-3xl font-extrabold tracking-tighter text-gray-800">{personalInfo.name}</h1>
           <div className="flex items-center justify-center flex-wrap gap-x-3 gap-y-1 text-gray-500 mt-3 text-[10px] uppercase tracking-widest">
             {personalInfo.email && <a href={`mailto:${personalInfo.email}`} className="hover:text-primary">
               <span>{personalInfo.email}</span>
@@ -50,7 +50,7 @@ export function MinimalistTemplate({ resume }: { resume: ResumeSchema }) {
                               <p className="text-[10px] text-gray-400">{exp.location}</p>
                            </div>
                           <ul className="mt-1.5 text-xs space-y-1 text-gray-600">
-                            {exp.description.split('\n').map((line, i) => line.trim() && <li key={i}>{line.replace(/^- /, '– ')}</li>)}
+                            {exp.description.split('\n').filter(line => line.trim()).map((line, i) => <li key={i}>{line.replace(/^- /, '– ')}</li>)}
                           </ul>
                         </div>
                       ))}

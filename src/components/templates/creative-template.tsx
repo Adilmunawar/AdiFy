@@ -95,7 +95,7 @@ export function CreativeTemplate({ resume }: { resume: ResumeSchema }) {
                         </div>
                          <p className="font-semibold text-gray-700 text-xs">{exp.company}</p>
                          <ul className="mt-1 list-disc list-inside text-xs space-y-1 text-gray-600">
-                          {exp.description.split('\n').map((line, i) => line.trim() && <li key={i} className="list-none">{line.replace(/^- /, '• ')}</li>)}
+                          {exp.description.split('\n').filter(line => line.trim()).map((line, i) => <li key={i} className="list-none">{line.replace(/^- /, '• ')}</li>)}
                         </ul>
                     </div>
                   ))}

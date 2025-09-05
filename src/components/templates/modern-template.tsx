@@ -17,7 +17,7 @@ export function ModernTemplate({ resume }: { resume: ResumeSchema }) {
                       <Image
                           src={personalInfo.photoUrl}
                           alt={personalInfo.name}
-                          className="rounded-full object-cover ring-4 ring-gray-700"
+                          className="rounded-full object-cover ring-4 ring-primary"
                           fill
                           data-ai-hint="profile photo"
                       />
@@ -30,8 +30,8 @@ export function ModernTemplate({ resume }: { resume: ResumeSchema }) {
             
             <div className="space-y-6 w-full mt-auto">
                 <section>
-                    <h2 className="text-xs font-semibold tracking-widest uppercase text-gray-300">Contact</h2>
-                    <Separator className="bg-gray-600 my-1.5" />
+                    <h2 className="text-xs font-semibold tracking-widest uppercase text-primary">Contact</h2>
+                    <Separator className="bg-primary/50 my-1.5" />
                     <div className="space-y-2 text-[11px] text-gray-300">
                         {personalInfo.email && <div className="flex items-center gap-2">
                             <Mail className="w-3 h-3 text-primary shrink-0"/>
@@ -49,8 +49,8 @@ export function ModernTemplate({ resume }: { resume: ResumeSchema }) {
                 </section>
 
                 {education.length > 0 && <section>
-                    <h2 className="text-xs font-semibold tracking-widest uppercase text-gray-300">Education</h2>
-                    <Separator className="bg-gray-600 my-1.5" />
+                    <h2 className="text-xs font-semibold tracking-widest uppercase text-primary">Education</h2>
+                    <Separator className="bg-primary/50 my-1.5" />
                     <div className="space-y-3">
                         {education.map((edu) => (
                         <div key={edu.id}>
@@ -63,8 +63,8 @@ export function ModernTemplate({ resume }: { resume: ResumeSchema }) {
                 </section>}
 
                 {skills.content && <section>
-                    <h2 className="text-xs font-semibold tracking-widest uppercase text-gray-300">Skills</h2>
-                    <Separator className="bg-gray-600 my-1.5" />
+                    <h2 className="text-xs font-semibold tracking-widest uppercase text-primary">Skills</h2>
+                    <Separator className="bg-primary/50 my-1.5" />
                     <div className="flex flex-wrap gap-1.5">
                         {skills.content.split(',').map(skill => skill.trim() && (
                           <span key={skill} className="bg-gray-700 text-gray-200 text-[10px] px-2 py-0.5 rounded">{skill.trim()}</span>
@@ -75,12 +75,12 @@ export function ModernTemplate({ resume }: { resume: ResumeSchema }) {
         </div>
         <div className="w-2/3 p-8 flex flex-col bg-white overflow-y-auto">
             {summary.content && <section className="mb-6">
-                <h2 className="text-lg font-bold text-gray-700 tracking-wide uppercase border-b-2 border-gray-200 pb-1.5 mb-3">Professional Summary</h2>
+                <h2 className="text-lg font-bold text-gray-700 tracking-wide uppercase border-b-2 border-primary/50 pb-1.5 mb-3">Professional Summary</h2>
                 <p className="text-xs text-gray-700 leading-relaxed">{summary.content}</p>
             </section>}
             
             {experience.length > 0 && <section className="mb-6">
-                <h2 className="text-lg font-bold text-gray-700 tracking-wide uppercase border-b-2 border-gray-200 pb-1.5 mb-3">Work Experience</h2>
+                <h2 className="text-lg font-bold text-gray-700 tracking-wide uppercase border-b-2 border-primary/50 pb-1.5 mb-3">Work Experience</h2>
                 <div className="space-y-5">
                     {experience.map((exp) => (
                     <div key={exp.id}>
@@ -89,8 +89,8 @@ export function ModernTemplate({ resume }: { resume: ResumeSchema }) {
                           <span className="text-[10px] text-gray-500 font-mono">{exp.startDate} - {exp.endDate}</span>
                         </div>
                         <p className="text-xs text-gray-500 mb-1.5">{exp.location}</p>
-                        <ul className="list-disc list-outside ml-3.5 text-xs space-y-1 text-gray-700">
-                          {exp.description.split('\n').map((line, i) => line.trim() && <li key={i}>{line.replace(/^- /, '')}</li>)}
+                        <ul className="list-disc list-outside ml-3.5 text-xs space-y-1 text-gray-700 marker:text-primary">
+                          {exp.description.split('\n').filter(line => line.trim()).map((line, i) => <li key={i}>{line.replace(/^- /, '')}</li>)}
                         </ul>
                     </div>
                     ))}
@@ -98,7 +98,7 @@ export function ModernTemplate({ resume }: { resume: ResumeSchema }) {
             </section>}
 
             {projects.length > 0 && <section>
-                <h2 className="text-lg font-bold text-gray-700 tracking-wide uppercase border-b-2 border-gray-200 pb-1.5 mb-3">Projects</h2>
+                <h2 className="text-lg font-bold text-gray-700 tracking-wide uppercase border-b-2 border-primary/50 pb-1.5 mb-3">Projects</h2>
                 <div className="space-y-4">
                     {projects.map((proj) => (
                     <div key={proj.id}>
