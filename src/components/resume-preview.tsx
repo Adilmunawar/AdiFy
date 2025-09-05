@@ -10,24 +10,19 @@ import { CreativeTemplate } from './templates/creative-template';
 import { MinimalistTemplate } from './templates/minimalist-template';
 import { resumeSchema } from '@/lib/schema';
 import type { ResumeSchema as ResumeSchemaType } from '@/lib/schema';
-import { useFormContext } from 'react-hook-form';
 
 export default function ResumePreview() {
-  const { resume: storedResume } = useResumeStore();
-  const form = useFormContext<ResumeSchemaType>();
-  
-  // This will trigger re-renders when the form is updated
-  const watchedData = form?.watch();
-
   // Always use the stored resume as the source of truth for rendering.
   // This prevents brief moments of invalid data during form updates.
-  const resume = storedResume;
+  const resume = useResumeStore((state) => state.resume);
 
   // Ensure data is valid before rendering
   const parseResult = resumeSchema.safeParse(resume);
 
   const renderTemplate = () => {
     if (!parseResult.success) {
+      // This check prevents rendering with incomplete or invalid data,
+      // which was causing the preview to get stuck in a loading state.
       return (
           <div className={`w-full max-w-[8.5in] aspect-[8.5/11] mx-auto flex items-center justify-center`}>
               <p>Loading preview...</p>
