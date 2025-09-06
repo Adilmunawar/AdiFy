@@ -1,3 +1,4 @@
+import AnimatedSection from "@/components/animated-section";
 import CallToAction from "@/components/landing-page/call-to-action";
 import ExpertAdvice from "@/components/landing-page/expert-advice";
 import Faq from "@/components/landing-page/faq";

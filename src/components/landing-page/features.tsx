@@ -1,5 +1,6 @@
 import { GraduationCap, FileText, Bot, Trophy, Sparkles, Pencil } from "lucide-react";
 import AnimatedSection from "../animated-section";
+import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 
 const features = [
   {
@@ -39,20 +40,20 @@ export default function Features() {
     <AnimatedSection>
       <div className="max-w-6xl mx-auto">
         <h2 className="text-3xl font-bold text-center text-gray-800 mb-4">
-          Get hired fast with a powerful resume
+          Get hired faster with a powerful resume
         </h2>
-        <p className="text-center text-gray-600 mb-12">
-          Our resume builder is packed with features to help you land your dream job.
+        <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+          Our resume builder is packed with features to help you land your dream job, from AI-powered suggestions to university-approved templates.
         </p>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, index) => (
-            <div key={index} className="flex gap-4">
-              <div className="flex-shrink-0">{feature.icon}</div>
-              <div>
-                <h3 className="text-lg font-bold text-gray-800">{feature.title}</h3>
-                <p className="mt-2 text-gray-600">{feature.description}</p>
-              </div>
-            </div>
+            <Card key={index} className="flex flex-col items-center text-center p-6 hover:shadow-lg transition-shadow">
+              <div className="flex-shrink-0 mb-4">{feature.icon}</div>
+              <CardHeader className="p-0">
+                <CardTitle className="text-lg">{feature.title}</CardTitle>
+              </CardHeader>
+              <CardDescription className="mt-2 text-gray-600">{feature.description}</CardDescription>
+            </Card>
           ))}
         </div>
       </div>
