@@ -77,7 +77,7 @@
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
-  .no-print, .no-print * {
+  .no-print {
     display: none !important;
   }
   #resume-container {
