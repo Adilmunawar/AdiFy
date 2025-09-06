@@ -18,6 +18,7 @@ import { ClassicTemplate } from './templates/classic-template';
 import { ExecutiveTemplate } from './templates/executive-template';
 import { CreativeTemplate } from './templates/creative-template';
 import { MinimalistTemplate } from './templates/minimalist-template';
+import { ProfessionalTemplate } from './templates/professional-template';
 
 type TemplateSwitcherProps = {
   isOpen: boolean;
@@ -25,12 +26,13 @@ type TemplateSwitcherProps = {
 };
 
 const templates = [
-  { id: 'default', name: 'Default', component: DefaultTemplate },
+  { id: 'default', name: 'Advanced', component: DefaultTemplate },
   { id: 'modern', name: 'Modern', component: ModernTemplate },
   { id: 'classic', name: 'Classic', component: ClassicTemplate },
   { id: 'executive', name: 'Executive', component: ExecutiveTemplate },
   { id: 'creative', name: 'Creative', component: CreativeTemplate },
   { id: 'minimalist', name: 'Minimalist', component: MinimalistTemplate },
+  { id: 'professional', name: 'Professional', component: ProfessionalTemplate },
 ];
 
 export default function TemplateSwitcher({ isOpen, onOpenChange }: TemplateSwitcherProps) {

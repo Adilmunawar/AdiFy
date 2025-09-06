@@ -9,6 +9,7 @@ import { ClassicTemplate } from './templates/classic-template';
 import { ExecutiveTemplate } from './templates/executive-template';
 import { CreativeTemplate } from './templates/creative-template';
 import { MinimalistTemplate } from './templates/minimalist-template';
+import { ProfessionalTemplate } from './templates/professional-template';
 
 export default function ResumePreview() {
   const { resume } = useResumeStore();
@@ -26,6 +27,8 @@ export default function ResumePreview() {
         return <CreativeTemplate resume={resume} />;
       case 'minimalist':
         return <MinimalistTemplate resume={resume} />;
+      case 'professional':
+        return <ProfessionalTemplate resume={resume} />;
       default:
         return <DefaultTemplate resume={resume} />;
     }
