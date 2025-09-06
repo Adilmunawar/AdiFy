@@ -41,8 +41,13 @@ export const skillsSchema = z.object({
   content: z.string(),
 });
 
+export const themeSchema = z.object({
+  primaryColor: z.string(),
+});
+
 export const resumeSchema = z.object({
   template: z.string(),
+  theme: themeSchema,
   personalInfo: personalInfoSchema,
   summary: summarySchema,
   experience: z.array(experienceSchema),

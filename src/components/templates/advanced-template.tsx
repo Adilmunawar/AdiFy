@@ -7,7 +7,7 @@ import Image from 'next/image';
 
 export function AdvancedTemplate({ resume }: { resume: ResumeSchema }) {
   const { personalInfo, summary, experience, education, projects, skills } = resume;
-  const primaryColor = 'text-blue-600';
+  const primaryColor = 'text-primary';
 
   return (
     <div className="flex h-full font-sans">
@@ -66,7 +66,7 @@ export function AdvancedTemplate({ resume }: { resume: ResumeSchema }) {
             <h2 className={`text-sm font-bold uppercase tracking-wider ${primaryColor} mb-3`}>Skills</h2>
             <div className="flex flex-wrap gap-1.5">
               {skills.content.split(',').map(skill => skill.trim() && (
-                <span key={skill} className="bg-blue-100 text-blue-800 text-[9px] px-2 py-1 rounded-full font-medium">{skill.trim()}</span>
+                <span key={skill} className="bg-primary/10 text-primary text-[9px] px-2 py-1 rounded-full font-medium">{skill.trim()}</span>
               ))}
             </div>
           </section>
@@ -81,7 +81,7 @@ export function AdvancedTemplate({ resume }: { resume: ResumeSchema }) {
 
         {summary.content && (
           <section className="mb-6">
-            <h2 className={`text-base font-bold uppercase tracking-wider ${primaryColor} border-b-2 border-blue-600 pb-1 mb-3`}>
+            <h2 className={`text-base font-bold uppercase tracking-wider ${primaryColor} border-b-2 border-primary pb-1 mb-3`}>
               Professional Summary
             </h2>
             <p className="text-xs leading-relaxed">{summary.content}</p>
@@ -90,7 +90,7 @@ export function AdvancedTemplate({ resume }: { resume: ResumeSchema }) {
 
         {experience.length > 0 && (
           <section className="mb-6">
-            <h2 className={`text-base font-bold uppercase tracking-wider ${primaryColor} border-b-2 border-blue-600 pb-1 mb-3`}>
+            <h2 className={`text-base font-bold uppercase tracking-wider ${primaryColor} border-b-2 border-primary pb-1 mb-3`}>
               Work Experience
             </h2>
             <div className="space-y-4">
@@ -112,7 +112,7 @@ export function AdvancedTemplate({ resume }: { resume: ResumeSchema }) {
 
         {projects.length > 0 && (
           <section>
-            <h2 className={`text-base font-bold uppercase tracking-wider ${primaryColor} border-b-2 border-blue-600 pb-1 mb-3`}>
+            <h2 className={`text-base font-bold uppercase tracking-wider ${primaryColor} border-b-2 border-primary pb-1 mb-3`}>
               Projects
             </h2>
             <div className="space-y-3">
@@ -129,4 +129,3 @@ export function AdvancedTemplate({ resume }: { resume: ResumeSchema }) {
     </div>
   );
 }
-

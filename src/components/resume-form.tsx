@@ -1,3 +1,4 @@
+
 'use client';
 
 import React from 'react';
@@ -17,6 +18,7 @@ import ProjectsForm from './forms/projects-form';
 import SkillsForm from './forms/skills-form';
 import { ScrollArea } from './ui/scroll-area';
 import TemplateSwitcher from './template-switcher';
+import ThemeForm from './forms/theme-form';
 
 export default function ResumeForm() {
     const { isTemplateSwitcherOpen, setTemplateSwitcherOpen } = useResumeStore();
@@ -26,6 +28,13 @@ export default function ResumeForm() {
       <ScrollArea className="h-full no-print">
         <div className="p-4 md:p-8 space-y-8">
           <Accordion type="multiple" defaultValue={['personal-info']} className="w-full">
+            <AccordionItem value="theme">
+              <AccordionTrigger className="text-xl font-bold">Theme</AccordionTrigger>
+              <AccordionContent>
+                <ThemeForm />
+              </AccordionContent>
+            </AccordionItem>
+            
             <AccordionItem value="personal-info">
               <AccordionTrigger className="text-xl font-bold">Personal Information</AccordionTrigger>
               <AccordionContent>

@@ -1,3 +1,4 @@
+
 'use client';
 
 import { create } from 'zustand';
@@ -12,6 +13,7 @@ interface ResumeState {
   isTemplateSwitcherOpen: boolean;
   updateResume: (resume: ResumeSchema) => void;
   setTemplate: (template: string) => void;
+  setPrimaryColor: (color: string) => void;
   setTemplateSwitcherOpen: (isOpen: boolean) => void;
   resetResume: () => void;
 }
@@ -23,6 +25,7 @@ export const useResumeStore = create<ResumeState>()(
       isTemplateSwitcherOpen: false,
       updateResume: (resume) => set({ resume }),
       setTemplate: (template) => set((state) => ({ resume: { ...state.resume, template } })),
+      setPrimaryColor: (color) => set((state) => ({ resume: { ...state.resume, theme: { ...state.resume.theme, primaryColor: color } } })),
       setTemplateSwitcherOpen: (isOpen) => set({ isTemplateSwitcherOpen: isOpen }),
       resetResume: () => set({ resume: initialData }),
     }),
@@ -49,6 +52,7 @@ export const useDebouncedResumeStore = () => {
             isTemplateSwitcherOpen: false,
             updateResume: () => {},
             setTemplate: () => {},
+            setPrimaryColor: () => {},
             setTemplateSwitcherOpen: () => {},
             resetResume: () => {},
         };

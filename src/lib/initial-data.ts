@@ -3,7 +3,10 @@ import { v4 as uuidv4 } from 'uuid';
 import type { ResumeSchema } from './schema';
 
 export const initialData: ResumeSchema = {
-  template: 'default',
+  template: 'advanced',
+  theme: {
+    primaryColor: '206 90% 54%', // hsl(206, 90%, 54%)
+  },
   personalInfo: {
     name: 'Adil Munawar',
     email: 'adil.munawar@example.com',
@@ -66,4 +69,3 @@ export const initialData: ResumeSchema = {
     content: 'JavaScript, TypeScript, React, Next.js, Node.js, Python, SQL, Docker, AWS, Terraform, Kubernetes, CI/CD',
   },
 };
-

@@ -7,14 +7,14 @@ import Image from 'next/image';
 
 export function Creative2Template({ resume }: { resume: ResumeSchema }) {
   const { personalInfo, summary, experience, education, projects, skills } = resume;
-  const primaryColor = 'text-teal-600';
-  const primaryBgColor = 'bg-teal-600';
+  const primaryColor = 'text-primary';
+  const primaryBgColor = 'bg-primary';
   const accentColor = 'text-gray-600';
 
   return (
     <div className="flex h-full font-sans">
       {/* Left Column */}
-      <div className={`w-1/3 ${primaryBgColor} text-white p-8 flex flex-col`}>
+      <div className={`${primaryBgColor} w-1/3 text-white p-8 flex flex-col`}>
         {personalInfo.photoUrl && (
           <div className="flex justify-center mb-6">
             <div className="relative w-32 h-32 rounded-full overflow-hidden border-4 border-white shadow-lg">
@@ -96,7 +96,7 @@ export function Creative2Template({ resume }: { resume: ResumeSchema }) {
             <div className="space-y-4 relative before:absolute before:inset-y-0 before:left-2 before:w-0.5 before:bg-gray-200">
               {experience.map((exp) => (
                 <div key={exp.id} className="pl-6 relative">
-                   <div className="absolute left-0 top-1.5 h-2 w-2 rounded-full bg-teal-600 border-2 border-white"></div>
+                   <div className={`absolute left-0 top-1.5 h-2 w-2 rounded-full ${primaryBgColor} border-2 border-white`}></div>
                    <div className="flex justify-between items-baseline">
                     <h3 className="font-semibold text-sm">{exp.jobTitle}</h3>
                     <span className="text-[9px] text-gray-500 font-mono">{exp.startDate} - {exp.endDate}</span>
