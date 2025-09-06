@@ -102,6 +102,7 @@ const TrueFocus: React.FC<TrueFocusProps> = ({
     <div className="focus-container" ref={containerRef}>
       {words.map((word, index) => {
         const isActive = index === currentIndex;
+        const isBrandWord = word === "Adify";
         return (
           <span
             key={index}
@@ -120,9 +121,10 @@ const TrueFocus: React.FC<TrueFocusProps> = ({
                   : isActive
                     ? `blur(0px)`
                     : `blur(${blurAmount}px)`,
-                transition: `filter ${animationDuration}s ease`,
+                transition: `filter ${animationDuration}s ease, color ${animationDuration}s ease`,
                 '--border-color': borderColor,
-                '--glow-color': glowColor
+                '--glow-color': glowColor,
+                color: isBrandWord ? 'hsl(var(--primary))' : 'hsl(var(--foreground))'
               } as React.CSSProperties
             }
             onMouseEnter={() => handleMouseEnter(index)}
