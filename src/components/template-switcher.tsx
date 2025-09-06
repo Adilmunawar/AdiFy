@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useResumeStore } from '@/lib/store';
@@ -12,13 +13,16 @@ import {
 import { Card, CardContent } from '@/components/ui/card';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { cn } from '@/lib/utils';
-import { DefaultTemplate } from './templates/default-template';
+import { AdvancedTemplate } from './templates/advanced-template';
 import { ModernTemplate } from './templates/modern-template';
 import { ClassicTemplate } from './templates/classic-template';
 import { ExecutiveTemplate } from './templates/executive-template';
 import { CreativeTemplate } from './templates/creative-template';
 import { MinimalistTemplate } from './templates/minimalist-template';
 import { ProfessionalTemplate } from './templates/professional-template';
+import { TechnicalTemplate } from './templates/technical-template';
+import { CorporateTemplate } from './templates/corporate-template';
+import { Creative2Template } from './templates/creative-2-template';
 
 type TemplateSwitcherProps = {
   isOpen: boolean;
@@ -26,13 +30,16 @@ type TemplateSwitcherProps = {
 };
 
 const templates = [
-  { id: 'default', name: 'Advanced', component: DefaultTemplate },
+  { id: 'default', name: 'Advanced', component: AdvancedTemplate },
   { id: 'modern', name: 'Modern', component: ModernTemplate },
   { id: 'classic', name: 'Classic', component: ClassicTemplate },
   { id: 'executive', name: 'Executive', component: ExecutiveTemplate },
   { id: 'creative', name: 'Creative', component: CreativeTemplate },
   { id: 'minimalist', name: 'Minimalist', component: MinimalistTemplate },
   { id: 'professional', name: 'Professional', component: ProfessionalTemplate },
+  { id: 'technical', name: 'Technical', component: TechnicalTemplate },
+  { id: 'corporate', name: 'Corporate', component: CorporateTemplate },
+  { id: 'creative-2', name: 'Creative II', component: Creative2Template },
 ];
 
 export default function TemplateSwitcher({ isOpen, onOpenChange }: TemplateSwitcherProps) {
@@ -61,7 +68,7 @@ export default function TemplateSwitcher({ isOpen, onOpenChange }: TemplateSwitc
                     <Card 
                         className={cn(
                             "cursor-pointer hover:border-primary transition-all duration-200 border-2 border-transparent group-hover:scale-105",
-                            resume.template === template.id && "border-primary ring-2 ring-primary"
+                            (resume.template === template.id || (template.id === 'default' && !resume.template)) && "border-primary ring-2 ring-primary"
                         )}
                         onClick={() => handleSelectTemplate(template.id)}
                     >
