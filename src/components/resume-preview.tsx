@@ -17,7 +17,7 @@ import { Creative2Template } from './templates/creative-2-template';
 
 export default function ResumePreview() {
   const { resume } = useResumeStore();
-  const { template, theme } = resume;
+  const { template, theme } = resume || {};
 
   const renderTemplate = () => {
     switch(template) {
@@ -48,7 +48,7 @@ export default function ResumePreview() {
     <>
       <style>{`
         #resume-preview {
-          --primary: ${theme.primaryColor};
+          --primary: ${theme?.primaryColor};
         }
       `}</style>
       <Card id="resume-preview" className={`w-[8.5in] h-[11in] mx-auto shadow-lg`}>
