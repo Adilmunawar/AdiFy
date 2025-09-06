@@ -67,6 +67,11 @@
   }
 }
 
+@page {
+  size: letter;
+  margin: 0;
+}
+
 @media print {
   body {
     -webkit-print-color-adjust: exact;
@@ -91,6 +96,7 @@
     height: 100%;
     padding: 0;
     margin: 0;
+    transform: scale(1) !important;
   }
   #resume-preview {
     margin: 0;
@@ -116,9 +122,11 @@
     border: 1px solid hsl(var(--border));
 }
 
-#resume-container.print-container {
+#resume-container {
   transform: scale(0.75);
+  transform-origin: top;
 }
+
 
 @layer utilities {
     @keyframes marquee {
@@ -129,8 +137,3 @@
       animation: marquee 25s linear infinite;
     }
   }
-
-#resume-container {
-  transform: scale(0.75);
-  transform-origin: top;
-}

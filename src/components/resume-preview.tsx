@@ -32,10 +32,8 @@ export default function ResumePreview() {
   }
 
   return (
-    <div id="resume-container">
-      <Card id="resume-preview" className={`w-[8.5in] h-[11in] mx-auto shadow-lg`}>
-        {renderTemplate()}
-      </Card>
-    </div>
+    <Card id="resume-preview" className={`w-[8.5in] h-[11in] mx-auto shadow-lg`}>
+      {renderTemplate()}
+    </Card>
   );
 }
