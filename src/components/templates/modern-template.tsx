@@ -6,6 +6,7 @@ import Image from 'next/image';
 
 export function ModernTemplate({ resume }: { resume: ResumeSchema }) {
   const { personalInfo, summary, experience, education, projects, skills } = resume;
+  const primaryColor = 'text-primary';
 
   return (
     <div className="p-8 bg-white h-full text-[10px] font-sans text-gray-800">
@@ -76,7 +77,7 @@ export function ModernTemplate({ resume }: { resume: ResumeSchema }) {
 
           {summary.content && (
             <section className="mb-6">
-              <h2 className="text-base font-bold uppercase tracking-wider text-blue-700 border-b-2 border-blue-700 pb-1 mb-3">
+              <h2 className={`text-base font-bold uppercase tracking-wider ${primaryColor} border-b-2 border-primary pb-1 mb-3`}>
                 Professional Summary
               </h2>
               <p className="text-xs leading-relaxed">{summary.content}</p>
@@ -85,7 +86,7 @@ export function ModernTemplate({ resume }: { resume: ResumeSchema }) {
 
           {experience.length > 0 && (
             <section className="mb-6">
-              <h2 className="text-base font-bold uppercase tracking-wider text-blue-700 border-b-2 border-blue-700 pb-1 mb-3">
+              <h2 className={`text-base font-bold uppercase tracking-wider ${primaryColor} border-b-2 border-primary pb-1 mb-3`}>
                 Work Experience
               </h2>
               <div className="space-y-4">
@@ -107,7 +108,7 @@ export function ModernTemplate({ resume }: { resume: ResumeSchema }) {
 
           {projects.length > 0 && (
             <section>
-              <h2 className="text-base font-bold uppercase tracking-wider text-blue-700 border-b-2 border-blue-700 pb-1 mb-3">
+              <h2 className={`text-base font-bold uppercase tracking-wider ${primaryColor} border-b-2 border-primary pb-1 mb-3`}>
                 Projects
               </h2>
               <div className="space-y-3">
