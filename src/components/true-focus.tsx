@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
@@ -79,7 +80,7 @@ const TrueFocus: React.FC<TrueFocusProps> = ({
       width: activeRect.width,
       height: activeRect.height
     });
-  }, [currentIndex, words, isComponentVisible]);
+  }, [currentIndex, isComponentVisible, words]);
 
   const handleMouseEnter = (index: number) => {
     if (manualMode) {
