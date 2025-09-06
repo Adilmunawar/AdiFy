@@ -25,7 +25,7 @@ export default function ResumeForm() {
 
   return (
     <>
-      <ScrollArea className="h-full no-print">
+      <ScrollArea className="h-full">
         <div className="p-4 md:p-6 space-y-6">
           <Accordion type="multiple" defaultValue={['personal-info']} className="w-full">
             <AccordionItem value="theme">
